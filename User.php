@@ -72,9 +72,9 @@ session_start();
 			if ($no_rows == 1){
                 while($user = $res->fetch_object()){
 
-                    $this->uname = $_SESSION['user']['uname'];
-                    $this->umoney = $_SESSION['user']['umoney'];
-                    $this->utype = $_SESSION['user']['utype'];
+                    $this->uname = $user->uname;
+                    $this->umoney = $user->umoney;
+                    $this->utype = $user->utype;
 
                     $_SESSION['login'] = true;
                     $_SESSION['user']['uname'] = $user->uname;
