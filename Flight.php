@@ -24,10 +24,29 @@ class Flight {
         return $db;
     }
 
-
+    /**
+     * Get all flights
+     * @return array
+     */
     public function index(){
         $get_all_flights_query = "SELECT * FROM fly";
         $res = mysqli_query($this->db,$get_all_flights_query);
+        $no_rows = mysqli_num_rows($res);
+
+        $flights = array();
+        while ($flight = $res->fetch_assoc()) {
+            array_push($flights, $flight);
+        }
+        return $flights;
+    }
+
+    /**
+     * Get lowest prices flight
+     * @return array
+     */
+    public function top_offers($limit = 3){
+        $get_lowest_flights_query = "SELECT * FROM fly ORDER BY fprice ASC LIMIT " . $limit ;
+        $res = mysqli_query($this->db,$get_lowest_flights_query);
         $no_rows = mysqli_num_rows($res);
 
         $flights = array();
