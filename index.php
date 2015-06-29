@@ -1,9 +1,10 @@
 <?php
 	include_once('User.php');
 	$current_user = new User();
-    echo $current_user->isLoggedIn();
 
-
+    if(isset($_POST['logout'])) {
+        $current_user->logout();
+    }
 	if(isset($_POST['login'])){
 		$uname = $_POST['uname'];
 		$password = $_POST['upsw'];
@@ -112,14 +113,13 @@
                         <div class="tab-content" id="Flight">
 
                             <form id="form_1" name="login" method="post" action="">
-
-                                <?php if (!$current_user->isLoggedIn()) : ?>
-                                    <div>
-                                        <div class="radio">
-                                            <div class="wrapper">
-                                                <p>Hello, <b><?php echo $current_user->getUserName() ?></b></p>
-                                            </div>
+                                <div>
+                                    <div class="radio">
+                                        <div class="wrapper">
+                                            <p>Hello, <b><?php echo $current_user->getUserName() ?></b></p>
                                         </div>
+                                    </div>
+                                    <?php if (!$current_user->isLoggedIn()) : ?>
                                         <div class="row"> <span class="left">Username</span>
                                             <input name="uname" type="text" class="input" required="required" placeholder="username">
                                         </div>
@@ -133,7 +133,14 @@
                                             </span>
                                             <a href="#" class="link1">Join Us</a>
                                         </div>
-                                    </div>
+                                    <?php else : ?>
+                                        <div class="wrapper">
+                                            <span class="right relative">
+                                                <input type=”hidden” name=”logout” value=”true”>
+                                                <input class="button1" type="submit" name="logout" value="Logout" />
+                                            </span>
+                                        </div>
+                                </div>
                                 <?php endif; ?>
                             </form>
                         </div>
