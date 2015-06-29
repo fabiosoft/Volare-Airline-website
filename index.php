@@ -81,14 +81,22 @@
             <nav id="top_nav">
                 <ul>
                     <li><a href="index.html" class="nav1">Home</a></li>
-                    <li><a href="#" class="nav2">Sitemap</a></li>
-                    <li><a href="contacts.html" class="nav3">Contact</a></li>
+                    <li><a href="#" class="nav2">
+                            <b>
+                                <?php
+                                    echo $current_user->getUserName();
+                                        if ($current_user->isLoggedIn())
+                                            echo "<br/>" . "€" . $current_user->getMoney();
+                                ?>
+                            </b>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
         <nav>
             <ul id="menu">
-                <li id="menu_active"><a href="index.html"><span><span>About</span></span></a></li>
+                <li id="menu_active"><a href="index.html"><span><span>Home</span></span></a></li>
                 <li><a href="offers.html"><span><span>Offers</span></span></a></li>
                 <li><a href="book.html"><span><span>Book</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>

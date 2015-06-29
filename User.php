@@ -8,7 +8,7 @@ session_start();
         private $db = NULL;
 
         private $uname = "Anonimo";
-        private $umoney = "";
+        private $umoney = 0;
         private $utype = "";
 
         function __construct() {
@@ -93,6 +93,10 @@ session_start();
             //session_start();
             session_unset();
             session_destroy();
+
+            $this->uname = "Anonimo";
+            $this->umoney = 0;
+            $this->utype = "";
         }
 
         /**
@@ -116,6 +120,14 @@ session_start();
 
         public function getUserName(){
             return $this->uname;
+        }
+
+        public function getMoney(){
+            return $this->umoney;
+        }
+
+        public function getUserType(){
+            return $this->utype;
         }
 	}
 ?>
