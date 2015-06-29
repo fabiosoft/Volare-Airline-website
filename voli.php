@@ -36,19 +36,7 @@
             <h1><a href="index.php" id="logo">VolareWeb</a></h1>
             <span id="slogan">Fast, Frequent &amp; Safe Flights</span>
             <nav id="top_nav">
-                <ul>
-                    <li><a href="index.php" class="nav1">Home</a></li>
-                    <li><a href="#" class="nav2">
-                            <b>
-                                <?php
-                                echo $current_user->getUserName();
-                                if ($current_user->isLoggedIn())
-                                    echo "<br/>" . "€" . $current_user->getMoney();
-                                ?>
-                            </b>
-                        </a>
-                    </li>
-                </ul>
+                <?php include_once ('top_nav.php')?>
             </nav>
         </div>
         <nav>
@@ -152,18 +140,7 @@
     <!--content end-->
     <!--footer -->
     <footer>
-        <div class="wrapper">
-            <ul id="icons">
-                <li><a href="#" class="normaltip"><img src="images/icon1.jpg" alt=""></a></li>
-                <li><a href="#" class="normaltip"><img src="images/icon2.jpg" alt=""></a></li>
-                <li><a href="#" class="normaltip"><img src="images/icon3.jpg" alt=""></a></li>
-                <li><a href="#" class="normaltip"><img src="images/icon4.jpg" alt=""></a></li>
-                <li><a href="#" class="normaltip"><img src="images/icon5.jpg" alt=""></a></li>
-                <li><a href="#" class="normaltip"><img src="images/icon6.jpg" alt=""></a></li>
-            </ul>
-            <div class="links">Copyright &copy; <a href="#">Domain Name</a> All Rights Reserved<br>
-                Design by <a target="_blank" href="http://www.templatemonster.com/">TemplateMonster.com</a></div>
-        </div>
+        <?php include_once('footer.php') ?>
     </footer>
     <!--footer end-->
 </div>
