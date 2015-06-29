@@ -1,5 +1,7 @@
 <?php
     include_once('Flight.php');
+    include_once('User.php');
+    $current_user = new User();
     $flight_manager = new Flight();
 
 ?>
@@ -7,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AirLines | Book</title>
+    <title>VolareWeb | Book</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -31,21 +33,29 @@
     <!--header -->
     <header>
         <div class="wrapper">
-            <h1><a href="index.html" id="logo">AirLines</a></h1>
+            <h1><a href="index.php" id="logo">VolareWeb</a></h1>
             <span id="slogan">Fast, Frequent &amp; Safe Flights</span>
             <nav id="top_nav">
                 <ul>
-                    <li><a href="index.html" class="nav1">Home</a></li>
-                    <li><a href="#" class="nav2">Sitemap</a></li>
-                    <li><a href="contacts.html" class="nav3">Contact</a></li>
+                    <li><a href="index.php" class="nav1">Home</a></li>
+                    <li><a href="#" class="nav2">
+                            <b>
+                                <?php
+                                echo $current_user->getUserName();
+                                if ($current_user->isLoggedIn())
+                                    echo "<br/>" . "€" . $current_user->getMoney();
+                                ?>
+                            </b>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
         <nav>
             <ul id="menu">
-                <li><a href="index.html"><span><span>About</span></span></a></li>
-                <li><a href="offers.html"><span><span>Offers</span></span></a></li>
-                <li id="menu_active"><a href="book.html"><span><span>Book</span></span></a></li>
+                <li><a href="index.php"><span><span>Home</span></span></a></li>
+                <li id="menu_active"><a href="voli.php"><span><span>Voli</span></span></a></li>
+                <li><a href="book.html"><span><span>Book</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>
                 <li><a href="safety.html"><span><span>Safety</span></span></a></li>
                 <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
