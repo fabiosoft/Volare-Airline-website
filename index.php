@@ -20,9 +20,8 @@
 		}
 	}
 	if(isset($_POST['register'])){
-		$username = $_POST['username'];
-		$uname = $_POST['emailid'];
-		$password = $_POST['password'];
+		$uname = $_POST['uname'];
+		$password = $_POST['upsw'];
 		$confirmPassword = $_POST['confirm_password'];
 		if($password == $confirmPassword){
 			$email = $current_user->isUserExist($uname);
@@ -67,20 +66,15 @@
     <![endif]-->
 </head>
 <body id="page1">
-
-<pre>
-    <?php print_r($_SESSION) ?>
-</pre>
-
 <div class="main">
     <!--header -->
     <header>
         <div class="wrapper">
-            <h1><a href="index.html" id="logo">AirLines</a></h1>
+            <h1><a href="index.php" id="logo">AirLines</a></h1>
             <span id="slogan">Fast, Frequent &amp; Safe Flights</span>
             <nav id="top_nav">
                 <ul>
-                    <li><a href="index.html" class="nav1">Home</a></li>
+                    <li><a href="index.php" class="nav1">Home</a></li>
                     <li><a href="#" class="nav2">
                             <b>
                                 <?php
@@ -96,8 +90,8 @@
         </div>
         <nav>
             <ul id="menu">
-                <li id="menu_active"><a href="index.html"><span><span>Home</span></span></a></li>
-                <li><a href="offers.html"><span><span>Offers</span></span></a></li>
+                <li id="menu_active"><a href="index.php"><span><span>Home</span></span></a></li>
+                <li><a href="voli.php"><span><span>Voli</span></span></a></li>
                 <li><a href="book.html"><span><span>Book</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>
                 <li><a href="safety.html"><span><span>Safety</span></span></a></li>
@@ -289,30 +283,7 @@
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
-                        <div id="login" class="animate form">
-                           <form name="login" method="post" action="">
-                                <h1>Log in</h1> 
-                                <p> 
-                                    <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-                                    <input id="emailsignup" name="emailid" required="required" type="email" placeholder="mysupermail@mail.com"/> 
-                                </p>
-                                <p> 
-                                    <label for="password" class="youpasswd" data-icon="p"> Your password </label>
-                                    <input id="password" name="password" required="required" type="password" placeholder="eg. X8df!90EO" /> 
-                                </p>
-                                <p class="keeplogin"> 
-									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-									<label for="loginkeeping">Keep me logged in</label>
-								</p>
-                                <p class="login button"> 
-                                    <input type="submit" name="login" value="Login" /> 
-								</p>
-                                <p class="change_link">
-									Not a member yet ?
-									<a href="#toregister" class="to_register">Join us</a>
-								</p>
-                            </form>
-                        </div>
+
 
                         <div id="register" class="animate form">
                             <form name="login" method="post" action="">
