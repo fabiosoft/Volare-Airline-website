@@ -25,7 +25,7 @@ session_start();
             $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
             if($db->connect_errno > 0){
                 // testing the connection
-                die ("Failed to connect to MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error);
+                die ("Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error);
             }
             return $db;
         }
@@ -40,7 +40,7 @@ session_start();
          */
 		public function join($username, $emailid, $password){
             //$password = md5($password);
-            $qr = mysqli_query($this->db,"INSERT INTO users(username, emailid, password) values('".$username."','".$emailid."','".$password."')") or die(mysqli_error());
+            $qr = mysqli_query($this->db,"INSERT INTO users(username, emailid, password) values('".$username."','".$emailid."','".$password."')") or die(mysqli_error($this->db));
             return $qr;
 			 
 		}
@@ -58,24 +58,19 @@ session_start();
 			//print_r($user_data);
 			$no_rows = mysqli_num_rows($res);
 
-			if ($no_rows == 1)
-			{
-		        print_r($_SESSION);
-
-				/*
-				$_SESSION['login'] = true;
-				$_SESSION['uid'] = $user_data['id'];
-				$_SESSION['username'] = $user_data['username'];
-				$_SESSION['email'] = $user_data['emailid'];
-				*/
-				return TRUE;
+			if ($no_rows == 1){
+                while($user = $res->fetch_object()){
+                    $_SESSION['login'] = true;
+                    $_SESSION['uname'] = $user->uname;
+                    $_SESSION['umoney'] = $user->umoney;
+                    $_SESSION['utype'] = $user->utype;
+                }
+                return TRUE;
 			}
 			else
 			{
 				return FALSE;
 			}
-
-
 		}
 
         /**

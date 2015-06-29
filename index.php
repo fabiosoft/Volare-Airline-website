@@ -1,11 +1,11 @@
 <?php
-	include_once('dbFunction.php');
-	$funObj = new User();
+	include_once('User.php');
+	$current_user = new User();
 
 	if(isset($_POST['login'])){
-		$emailid = $_POST['emailid'];
+		$uname = $_POST['emailid'];
 		$password = $_POST['password'];
-		$user = $funObj->login($emailid, $password);
+		$user = $current_user->login($uname, $password);
 		if ($user) {
 			// Login Success
             echo "Login Success";
@@ -18,13 +18,13 @@
 	}
 	if(isset($_POST['register'])){
 		$username = $_POST['username'];
-		$emailid = $_POST['emailid'];
+		$uname = $_POST['emailid'];
 		$password = $_POST['password'];
 		$confirmPassword = $_POST['confirm_password'];
 		if($password == $confirmPassword){
-			$email = $funObj->isUserExist($emailid);
+			$email = $current_user->isUserExist($uname);
 			if(!$email){
-				$register = $funObj->join($username, $emailid, $password);
+				$register = $current_user->join($username, $uname, $password);
 				if($register){
 					 echo "<script>alert('Registration Successful')</script>";
 				}else{
@@ -43,7 +43,7 @@
  <html lang="en" class="no-js">
  <head>
         <meta charset="UTF-8" />
-        <title>Login and Registration Form with HTML5 and CSS3</title>
+        <title>Volare - Website</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
         <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
