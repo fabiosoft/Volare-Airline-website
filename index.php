@@ -11,11 +11,11 @@
 		$auth_user = $current_user->login($uname, $password);
 		if ($auth_user) {
 			// Login Success
-            echo "Login Success";
+            //echo "Login Success";
 		   //header("location:home.php");
 		} else {
 			// Login Failed
-            echo "Login Failed";
+            //echo "Login Failed";
 			echo "<script>alert('Emailid / Password Not Match')</script>";
 		}
 	}
@@ -46,7 +46,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AirLines</title>
+    <title>VolareWeb</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
     <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
@@ -70,7 +70,7 @@
     <!--header -->
     <header>
         <div class="wrapper">
-            <h1><a href="index.php" id="logo">AirLines</a></h1>
+            <h1><a href="index.php" id="logo">VolareWeb</a></h1>
             <span id="slogan">Fast, Frequent &amp; Safe Flights</span>
             <nav id="top_nav">
                 <ul>
