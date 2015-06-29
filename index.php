@@ -136,7 +136,7 @@
                                     <?php else : ?>
                                         <div class="wrapper">
                                             <span class="right relative">
-                                                <input type=”hidden” name=”logout” value=”true”>
+                                                <input type=”hidden” name=”logout”>
                                                 <input class="button1" type="submit" name="logout" value="Logout" />
                                             </span>
                                         </div>
