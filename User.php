@@ -7,9 +7,20 @@ session_start();
          */
         private $db = NULL;
 
+        private $uname = "Anonimo";
+        private $umoney = "";
+        private $utype = "";
+
         function __construct() {
             // connecting to database
             $this->db = $this->dbConnect();
+
+            if(isset($_SESSION['user'])){
+                $this->uname = $_SESSION['user']['uname'];
+                $this->umoney = $_SESSION['user']['umoney'];
+                $this->utype = $_SESSION['user']['utype'];
+                $_SESSION['login'] = true;
+            }
         }
         // destructor
         function __destruct() {
@@ -60,10 +71,15 @@ session_start();
 
 			if ($no_rows == 1){
                 while($user = $res->fetch_object()){
+
+                    $this->uname = $_SESSION['user']['uname'];
+                    $this->umoney = $_SESSION['user']['umoney'];
+                    $this->utype = $_SESSION['user']['utype'];
+
                     $_SESSION['login'] = true;
-                    $_SESSION['uname'] = $user->uname;
-                    $_SESSION['umoney'] = $user->umoney;
-                    $_SESSION['utype'] = $user->utype;
+                    $_SESSION['user']['uname'] = $user->uname;
+                    $_SESSION['user']['umoney'] = $user->umoney;
+                    $_SESSION['user']['utype'] = $user->utype;
                 }
                 return TRUE;
 			}
@@ -72,6 +88,12 @@ session_start();
 				return FALSE;
 			}
 		}
+
+        public function logout(){
+            //session_start();
+            session_unset();
+            session_destroy();
+        }
 
         /**
          * Verify if a user already exists into the db
@@ -87,5 +109,13 @@ session_start();
 				return false;
 			}
 		}
+
+        public function isLoggedIn(){
+            return isset($_SESSION['user']);
+        }
+
+        public function getUserName(){
+            return $this->uname;
+        }
 	}
 ?>
