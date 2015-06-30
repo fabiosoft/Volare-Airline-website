@@ -5,7 +5,7 @@
                 <?php
                 echo $current_user->getUserName();
                 if ($current_user->isLoggedIn())
-                    echo "<br/>" . "€" . $current_user->getMoney();
+                    echo "<br/>" . "&euro;" . $current_user->getMoney();
                 ?>
             </b>
         </a>

@@ -48,7 +48,7 @@
                             foreach ($low_price_flights as $flight) : ?>
                                 <form id="form_5" action="volo.php" class="form_5" method="post">
                                     <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
-                                    <li><span class="right color1">da €<?php echo $flight['fprice']?></span><a href="volo.php" onclick="document.forms[0].submit();return false;"><?php echo $flight['fsrc']?></a></li>
+                                    <li><span class="right color1">da &euro;<?php echo $flight['fprice']?></span><a href="volo.php" onclick="document.forms[0].submit();return false;"><?php echo $flight['fsrc']?></a></li>
                                 </form>
                             <?php endforeach; ?>
                         </ul>
