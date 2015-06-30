@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Class Flight
+ * Flight manager
+ */
 class Flight {
     function __construct() {
         // connecting to database
@@ -54,5 +58,20 @@ class Flight {
             array_push($flights, $flight);
         }
         return $flights;
+    }
+
+    /**
+     * Search specific flight into the db
+     * @param $id
+     * @return mixed
+     */
+    public function find($id){
+        $find_flight_query = "SELECT * FROM fly WHERE fid = '" . $id ."'";
+        $res = mysqli_query($this->db,$find_flight_query);
+        $flights = array();
+        while ($flight = $res->fetch_assoc()) {
+            array_push($flights, $flight);
+        }
+        return $flights[0];
     }
 }
