@@ -62,7 +62,10 @@
                             <?php
                             $low_price_flights = $flight_manager->top_offers(3);
                             foreach ($low_price_flights as $flight) : ?>
-                            <li><span class="right color1">da €<?php echo $flight['fprice']?></span><a href="book2.html"><?php echo $flight['fsrc']?></a></li>
+                                <form id="form_5" action="volo.php" class="form_5" method="post">
+                                    <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
+                                    <li><span class="right color1">da €<?php echo $flight['fprice']?></span><a href="volo.php" onclick="document.forms[0].submit();return false;"><?php echo $flight['fsrc']?></a></li>
+                                </form>
                             <?php endforeach; ?>
                         </ul>
 
