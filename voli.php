@@ -56,13 +56,13 @@
         <div class="wrapper pad1">
             <article class="col1">
                 <div class="box1">
-                    <h2 class="top">Hot Offers!</h2>
-                    <div class="pad"> <strong>Our flights at lowest price!</strong><br>
+                    <h2 class="top">Offerte speciali!</h2>
+                    <div class="pad"> <strong>I nostri voli a prezzo più basso!</strong><br>
                         <ul class="pad_bot1 list1">
                             <?php
                             $low_price_flights = $flight_manager->top_offers(3);
                             foreach ($low_price_flights as $flight) : ?>
-                            <li><span class="right color1">from €<?php echo $flight['fprice']?></span><a href="book2.html"><?php echo $flight['fsrc']?></a></li>
+                            <li><span class="right color1">da €<?php echo $flight['fprice']?></span><a href="book2.html"><?php echo $flight['fsrc']?></a></li>
                             <?php endforeach; ?>
                         </ul>
 
@@ -71,8 +71,7 @@
             </article>
             <article class="col2">
                 <div class="box1">
-                    <h2 class="top">All our flights</h2>
-
+                    <h2 class="top">Tutti i nostri voli</h2>
                     <?php
                     $all_flights = $flight_manager->index();
                     foreach ($all_flights as $flight) : ?>
@@ -93,7 +92,7 @@
                                             <div class="cols">
                                                 <h5><?php echo $flight['fdst']?></h5>
                                             </div>
-                                            <span class="right relative"><a href="#" class="button1"><strong>Details</strong></a></span> </div>
+                                            <span class="right relative"><a href="#" class="button1"><strong>Seleziona</strong></a></span> </div>
                                         </div>
 
                                     </div>
