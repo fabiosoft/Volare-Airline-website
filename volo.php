@@ -66,7 +66,7 @@
             </article>
             <article class="col2">
                 <div class="box1">
-                    <div class="box2 top"> <strong>Please complete your details</strong> </div>
+                    <div class="box2 top"> <strong>Compilare i dettagli</strong> </div>
                     <form id="form_8" action="carrello.php" class="form_5" method="post">
                         <div>
                             <div class="pad">
@@ -76,22 +76,20 @@
                                             <?php echo $this_flight['fsrc'] ?>
                                         </div>
                                         <div class="row"> <span class="left">Destination</span>
-                                            <input type="radio" name="name">
+                                            <input type="checkbox" name="selected">
                                             <?php echo $this_flight['fdst'] ?> da € <?php echo $this_flight['fprice'] ?>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="wrapper pad_bot2"> <span class="left">Viaggiatori</span>
                                     <div class="col2">
-                                        <input type="text" class="input2" value="1"  onblur="if(this.value=='') this.value='1'" onFocus="if(this.value =='1' ) this.value=''">
+                                        <input name="adults" type="text" class="input2" value="1"  onblur="if(this.value=='') this.value='1'" onFocus="if(this.value =='1' ) this.value=''">
                                         <span class="left">Adults</span>
-                                        <input type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
+                                        <input name="children" type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
                                         <span class="left">Children</span> </div>
                                 </div>
                             </div>
-                            <div class="box2">
-                                Please select in the calendar the date you would like to start your travel (outbound flight, left hand side) and the date you would like to fly back (return flight, right hand side).
-                            </div>
+                            <div class="box2"></div>
 
                             <div class="pad">
                                 <div class="wrapper under">
@@ -103,11 +101,12 @@
                                             <?php echo $this_flight['ftdst']?>
                                         </div>
                                         <div class="row"> <span class="left">Posti:</span>
-                                            <?php echo $this_flight['fseat'] ?> da <b>€<?php echo $this_flight['fprice'] ?></b>
+                                            <?php echo $this_flight['fseat'] ?> da <b>€ <?php echo $this_flight['fprice'] ?></b> a persona
                                         </div>
                                     </div>
                                 </div>
-                                <input class="button_red" type="reset" name="reset" value="Annulla" />
+                                <input type="hidden" name="fid" value=<?php echo $this_flight['fid']?> >
+                                <input class="button_red" type="reset" name="reset" value="Cancella" />
                                 <input class="button_blue" type="submit" name="buy" value="Acquista" />
                             </div>
                         </div>
