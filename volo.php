@@ -8,7 +8,6 @@
     if(isset($_POST['fid'])){
         $flight_id = $_POST['fid'];
         $this_flight = $flight_manager->find($flight_id);
-        print_r($this_flight);
     }else{
         echo "no volo selezionato";
         die();
@@ -68,7 +67,7 @@
             <article class="col2">
                 <div class="box1">
                     <div class="box2 top"> <strong>Please complete your details</strong> </div>
-                    <form id="form_8" action="#" class="form_5" method="post">
+                    <form id="form_8" action="carrello.php" class="form_5" method="post">
                         <div>
                             <div class="pad">
                                 <div class="wrapper under">
@@ -93,30 +92,23 @@
                             <div class="box2">
                                 Please select in the calendar the date you would like to start your travel (outbound flight, left hand side) and the date you would like to fly back (return flight, right hand side).
                             </div>
-                                <div class="wrapper pad_bot1">
 
-                                        <!--<div class="markers">-->
-                                            <ul>
-
-                                                <li>Partenza: <?php echo $this_flight['fday'] ?> alle <?php echo $this_flight['ftsrc'] ?></li>
-
-                                                <strong class="selected"></strong>
-                                                <li><span>Special fare not available</span></li>
-
-                                                <strong></strong>
-                                                <li><span class="end">Availability not checked</span></li>
-                                            </ul>
-                                        <!--</div>-->
-
-                                    <div class="markers">
-                                        <strong class="active"></strong>
-                                            <span>Partenza: <?php echo $this_flight['fday'] ?> alle <?php echo $this_flight['ftsrc'] ?></span>
-                                        <strong class="selected"></strong>
-                                            <span>Special fare not available</span>
-                                        <strong></strong>
-                                            <span class="end">Availability not checked</span>
+                            <div class="pad">
+                                <div class="wrapper under">
+                                    <div class="col1">
+                                        <div class="row"> <span class="left">Partenza:</span>
+                                            <?php echo $this_flight['fday'] ?> alle <?php echo $this_flight['ftsrc'] ?>
+                                        </div>
+                                        <div class="row"> <span class="left">Arrivo:</span>
+                                            <?php echo $this_flight['ftdst']?>
+                                        </div>
+                                        <div class="row"> <span class="left">Posti:</span>
+                                            <?php echo $this_flight['fseat'] ?> da <b>€<?php echo $this_flight['fprice'] ?></b>
+                                        </div>
                                     </div>
-                                    <span class="right relative"><a href="#" class="button1"><strong>Search</strong></a></span> </div>
+                                </div>
+                                <input class="button_red" type="reset" name="reset" value="Annulla" />
+                                <input class="button_blue" type="submit" name="buy" value="Acquista" />
                             </div>
                         </div>
                     </form>

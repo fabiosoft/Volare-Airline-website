@@ -81,7 +81,7 @@
                                             </div>
                                             <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
                                             <span class="right relative">
-                                                <input class="button1" type="submit" name="details" value="Seleziona" />
+                                                <input class="button_blue" type="submit" name="details" value="Seleziona" />
                                             </span>
                                         </div>
                                         </div>

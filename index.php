@@ -104,7 +104,7 @@
 
                                         <div class="wrapper">
                                             <span class="right relative">
-                                                <input class="button1" type="submit" name="login" value="Login" />
+                                                <input class="button_blue" type="submit" name="login" value="Login" />
                                             </span>
                                             <!--<a href="#" class="link1">Join Us</a>-->
                                         </div>
@@ -112,7 +112,7 @@
                                         <div class="wrapper">
                                             <span class="right relative">
                                                 <input type=”hidden” name=”logout”>
-                                                <input class="button1" type="submit" name="logout" value="Logout" />
+                                                <input class="button_blue" type="submit" name="logout" value="Logout" />
                                             </span>
                                         </div>
                                 </div>

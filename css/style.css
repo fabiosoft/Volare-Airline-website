@@ -395,7 +395,7 @@ header {
 	margin:0;
 	padding:0
 }
-.button1 {
+.button_blue {
 	display:inline-block;
 	font-size:13px;
 	color:#fff;
@@ -410,18 +410,48 @@ header {
 	position:relative;
 	cursor:pointer
 }
-.button1 strong {
+.button_blue strong {
 	display:block;
 	padding-right:16px;
 	background:url(../images/marker_2.gif) right 10px no-repeat
 }
-.button1:hover {
+.button_blue:hover {
 	background:url(../images/button_active.gif) 0 0 repeat-x #e7e6e6
 }
-.button1:hover strong {
+.button_blue:hover strong {
 	background:url(../images/marker_1.gif) right 10px no-repeat;
 	color:#1d77e9
 }
+
+.button_red {
+    display:inline-block;
+    font-size:13px;
+    color:#fff;
+    text-decoration:none;
+    line-height:28px;
+    height:30px;
+    padding:0 19px;
+    /*background:url(../images/button_1.gif) 0 0px repeat-x;*/
+    background-color: #e93500;
+    border-radius:5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    position:relative;
+    cursor:pointer
+}
+.button_red strong {
+    display:block;
+    padding-right:16px;
+    background:url(../images/marker_2.gif) right 10px no-repeat
+}
+.button_red:hover {
+    background-color: #e7e6e6;
+}
+.button_red:hover strong {
+    color:#e93500;
+}
+
+
 .link1 {
 	padding-left:13px;
 	background:url(../images/marker_1.gif) 0 6px no-repeat;
