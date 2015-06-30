@@ -1,0 +1,9 @@
+/* Global properties for printing */
+body {
+    border:0;
+    font:13px "Times New Roman", Georgia, Serif;
+    color:#3a3a3a;
+    line-height:20px;
+    min-width:980px;
+    padding:10px 0
+}
