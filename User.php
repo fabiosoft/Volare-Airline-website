@@ -129,5 +129,13 @@ session_start();
         public function getUserType(){
             return $this->utype;
         }
+
+        /**
+         * Current user saved flights (fid)
+         * @return array
+         */
+        public function flights_reserved(){
+            return array(1,3,5);
+        }
 	}
 ?>
