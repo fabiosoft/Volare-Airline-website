@@ -78,7 +78,7 @@
 
                     <div class="content">
                         <div class="tab-content" id="Flight">
-                            <form id="form_5" action="#" class="form_5" method="post">
+                            <form id="form_5" action="volo.php" class="form_5" method="post">
                                 <div>
                                     <div class="wrapper">
                                         <h2><?php echo $flight['fsrc']?></h2>
@@ -92,7 +92,11 @@
                                             <div class="cols">
                                                 <h5><?php echo $flight['fdst']?></h5>
                                             </div>
-                                            <span class="right relative"><a href="#" class="button1"><strong>Seleziona</strong></a></span> </div>
+                                            <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
+                                            <span class="right relative">
+                                                <input class="button1" type="submit" name="details" value="Seleziona" />
+                                            </span>
+                                        </div>
                                         </div>
 
                                     </div>
