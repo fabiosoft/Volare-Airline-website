@@ -74,6 +74,14 @@ a {
 a:hover {
 	text-decoration:none
 }
+
+.price {
+    color: #4a9df2;
+    font-size: 30px;
+    padding:10px 0 0 41px;
+    float: right;
+}
+
 h1 {
 	padding:27px 0 0 41px;
 	float:left
