@@ -5,20 +5,16 @@
 
     $current_user = new User();
     $flight_manager = new Flight();
+    $cart = new Cart();
 
     if($current_user->isLoggedIn()) {
-
-        echo "<pre>";
-        echo print_r($_POST);
-        echo "</pre>";
-
         if (isset($_POST['now'])) {
             //buy now
             $my_flights = $current_user->flights_reserved();
             $success_payed = $current_user->pay_for_flight(1,1,1);
-            echo "<pre>";
-            echo $success_payed;
-            echo "</pre>";
+            if($success_payed == TRUE){
+                $cart->remove_all_items($current_user);
+            }
         }
 
     }else{

@@ -7,6 +7,11 @@
 
 class Cart {
 
+    /**
+     * calculate sum for all seats reserved.
+     * @param User $current_user
+     * @return int|null
+     */
     public function total_amount(User $current_user){
         if($current_user->isLoggedIn()){
             $totale = 0;
@@ -16,6 +21,12 @@ class Cart {
             return $totale;
         }
         return NULL;
+    }
+
+    public function remove_all_items(User $current_user){
+        if($current_user->isLoggedIn() and isset($_SESSION['flights'])) {
+            unset($_SESSION['flights']);
+        }
     }
 
 }
