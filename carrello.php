@@ -85,48 +85,38 @@ if($current_user->isLoggedIn()) {
             <article class="col2">
                 <div class="box1">
                     <div class="box2 top"> <strong>Riepilogo voli</strong> </div>
-                    <form id="form_8" action="carrello.php" class="form_5" method="post">
+                    <form id="form_8" action="process_order.php" class="form_5" method="post">
                         <div>
+                            <?php foreach (array_keys($my_flights) as $cur_flight_id) : ?>
+                            <?php $current_flight = $flight_manager->find($cur_flight_id) ?>
+
                             <div class="pad">
                                 <div class="wrapper under">
-
                                     <div class="col1">
                                         <div class="row"> <span class="left">Partenza</span>
-                                            <?php echo $this_flight['fsrc'] ?>
+                                            <?php echo $current_flight['fsrc'] ?>
                                         </div>
                                         <div class="row"> <span class="left">Destination</span>
-                                            <input type="checkbox" name="selected">
-                                            <?php echo $this_flight['fdst'] ?> da &euro; <?php echo $this_flight['fprice'] ?>
+                                            <?php echo $current_flight['fdst'] ?> da &euro; <?php echo $current_flight['fprice'] ?>
                                         </div>
                                     </div>
+                                    <?php
+                                        $price = $my_flights[$cur_flight_id]['price']; $seats = $my_flights[$cur_flight_id]['seats'];
+                                        $this_flight_seats_price = $price * $seats;
+                                    ?>
+                                    <span class="price"><?php echo $this_flight_seats_price  ?>&euro;</span>
                                 </div>
                             </div>
+
 
                             <div class="wrapper pad_bot2"></div> <!-- division line -->
 
-                            <div class="pad">
-                                <div class="wrapper under">
-                                    <div class="col1">
-                                        <div class="row"> <span class="left">Partenza</span>
-                                            <?php echo $this_flight['fsrc'] ?>
-                                        </div>
-                                        <div class="row"> <span class="left">Destination</span>
-                                            <input type="checkbox" name="selected">
-                                            <?php echo $this_flight['fdst'] ?> da &euro; <?php echo $this_flight['fprice'] ?>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="wrapper pad_bot2">
-                            </div>
-
-
-
+                            <?php endforeach; ?>
 
                             <div class="pad">
                                 <input type="hidden" name="fid" value=<?php echo $this_flight['fid']?> >
-                                <input class="button_red" type="reset" name="reset" value="Cancella" />
-                                <input class="button_blue" type="submit" name="buy" value="Acquista" />
+                                <input class="button_red" type="reset" name="now" value="Acquista ora" />
+                                <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
                             </div>
                         </div>
                     </form>
