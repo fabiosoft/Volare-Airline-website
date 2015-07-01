@@ -1,6 +1,7 @@
 <?php
 include_once('User.php');
 include_once('Flight.php');
+include_once('Cart.php');
 
 $current_user = new User();
 
@@ -8,10 +9,15 @@ if($current_user->isLoggedIn()) {
 
     if (isset($_POST['fid'])) {
         $seats = intval($_POST['adults']) + intval($_POST['children']);
-        $current_user->add_flight($_POST['fid'],$seats);
+        $price = intval($_POST['fprice']);
+        $current_user->add_flight($_POST['fid'],$seats,$price);
     }
 
+    $cart = new Cart();
     $my_flights = $current_user->flights_reserved();
+
+
+
 
     $flight_manager = new Flight();
 
@@ -24,7 +30,7 @@ if($current_user->isLoggedIn()) {
     }
 
     echo "<pre>";
-    print_r($_SESSION);
+    print_r($my_flights);
     echo "</pre>";
 }else{
     die("not logged in");
@@ -70,8 +76,8 @@ if($current_user->isLoggedIn()) {
                 <div class="box1">
                     <h2 class="top">Il mio carrello</h2>
                     <div class="pad">
-                        <strong>Hai <?php echo count($current_user->flights_reserved()) ?> voli prenotati</strong><br>
-                        <span class="price">10&euro;</span>
+                        <strong>Hai <?php echo count($my_flights) ?> voli prenotati</strong><br>
+                        <span class="price"><?php echo $cart->total_amount($current_user) ?>&euro;</span>
                         <br/><br/>
                     </div>
                 </div>

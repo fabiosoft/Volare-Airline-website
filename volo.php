@@ -105,6 +105,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="hidden" name="fprice" value=<?php echo $this_flight['fprice']?> >
                                 <input type="hidden" name="fid" value=<?php echo $this_flight['fid']?> >
                                 <input class="button_red" type="reset" name="reset" value="Cancella" />
                                 <input class="button_blue" type="submit" name="buy" value="Acquista" />

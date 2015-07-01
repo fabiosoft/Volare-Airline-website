@@ -130,8 +130,9 @@ session_start();
             return $this->utype;
         }
 
-        public function add_flight($flight_id, $num_seats){
-            $_SESSION['flights'][$flight_id] = $num_seats;
+        public function add_flight($flight_id, $num_seats,$price){
+            $_SESSION['flights'][$flight_id]['seats'] = $num_seats;
+            $_SESSION['flights'][$flight_id]['price'] = $price;
         }
 
         /**
@@ -139,7 +140,9 @@ session_start();
          * @return array
          */
         public function flights_reserved(){
-            return  $_SESSION['flights'];
+            return $_SESSION['flights'];
         }
+
+
 	}
 ?>
