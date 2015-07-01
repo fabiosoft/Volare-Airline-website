@@ -75,7 +75,7 @@ if($current_user->isLoggedIn()) {
             <article class="col2">
                 <div class="box1">
                     <div class="box2 top"> <strong>Riepilogo voli</strong> </div>
-                    <form id="form_8" action="process_order.php" class="form_5" method="post">
+
                         <div>
                             <?php foreach (array_keys($my_flights) as $cur_flight_id) : ?>
                             <?php $current_flight = $flight_manager->find($cur_flight_id) ?>
@@ -104,9 +104,19 @@ if($current_user->isLoggedIn()) {
                             <?php endforeach; ?>
 
                             <div class="pad">
+                                <div class="wrapper under">
+                                    <form id="form_8" action="grazie.php" class="form_5" method="post">
+                                    <input class="button_red" type="submit" name="now" value="Acquista ora" />
+                                    </form>
 
-                                <input class="button_red" type="submit" name="now" value="Acquista ora" />
-                                <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
+                                    <form id="form_8" action="salvati.php" class="form_5" method="post">
+                                    <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
+                                    </form>
+
+                                    <form id="form_8" action="voli.php" class="form_5" method="post">
+                                    <input class="button_red" type="submit" name="clear" value="Svuota carrello" />
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </form>

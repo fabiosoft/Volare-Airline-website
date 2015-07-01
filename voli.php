@@ -1,8 +1,14 @@
 <?php
     include_once('Flight.php');
     include_once('User.php');
+    include_once('Cart.php');
     $current_user = new User();
     $flight_manager = new Flight();
+    $cart = new Cart();
+
+    if(isset($_POST['clear'])){
+        $cart->remove_all_items($current_user);
+    }
 
 ?>
 
