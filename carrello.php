@@ -77,7 +77,7 @@ if($current_user->isLoggedIn()) {
                     <h2 class="top">Il mio carrello</h2>
                     <div class="pad">
                         <strong>Hai <?php echo count($my_flights) ?> voli prenotati</strong><br>
-                        <span class="price"><?php echo $cart->total_amount($current_user) ?>&euro;</span>
+                        Totale: <span class="price"><?php echo $cart->total_amount($current_user) ?>&euro;</span>
                         <br/><br/>
                     </div>
                 </div>
@@ -89,8 +89,9 @@ if($current_user->isLoggedIn()) {
                         <div>
                             <div class="pad">
                                 <div class="wrapper under">
+
                                     <div class="col1">
-                                        <div class="row"> <span class="left">From</span>
+                                        <div class="row"> <span class="left">Partenza</span>
                                             <?php echo $this_flight['fsrc'] ?>
                                         </div>
                                         <div class="row"> <span class="left">Destination</span>
@@ -99,30 +100,30 @@ if($current_user->isLoggedIn()) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wrapper pad_bot2"> <span class="left">Viaggiatori</span>
-                                    <div class="col2">
-                                        <input name="adults" type="text" class="input2" value="1"  onblur="if(this.value=='') this.value='1'" onFocus="if(this.value =='1' ) this.value=''">
-                                        <span class="left">Adults</span>
-                                        <input name="children" type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
-                                        <span class="left">Children</span> </div>
-                                </div>
                             </div>
-                            <div class="box2"></div>
+
+                            <div class="wrapper pad_bot2"></div> <!-- division line -->
 
                             <div class="pad">
                                 <div class="wrapper under">
                                     <div class="col1">
-                                        <div class="row"> <span class="left">Partenza:</span>
-                                            <?php echo $this_flight['fday'] ?> alle <?php echo $this_flight['ftsrc'] ?>
+                                        <div class="row"> <span class="left">Partenza</span>
+                                            <?php echo $this_flight['fsrc'] ?>
                                         </div>
-                                        <div class="row"> <span class="left">Arrivo:</span>
-                                            <?php echo $this_flight['ftdst']?>
-                                        </div>
-                                        <div class="row"> <span class="left">Posti:</span>
-                                            <?php echo $this_flight['fseat'] ?> da <b>&euro; <?php echo $this_flight['fprice'] ?></b> a persona
+                                        <div class="row"> <span class="left">Destination</span>
+                                            <input type="checkbox" name="selected">
+                                            <?php echo $this_flight['fdst'] ?> da &euro; <?php echo $this_flight['fprice'] ?>
                                         </div>
                                     </div>
+
                                 </div>
+                                <div class="wrapper pad_bot2">
+                            </div>
+
+
+
+
+                            <div class="pad">
                                 <input type="hidden" name="fid" value=<?php echo $this_flight['fid']?> >
                                 <input class="button_red" type="reset" name="reset" value="Cancella" />
                                 <input class="button_blue" type="submit" name="buy" value="Acquista" />
