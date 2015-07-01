@@ -17,7 +17,7 @@
     <!--header -->
     <header>
         <div class="wrapper">
-            <h1><a href="index.php" id="logo">VolareWeb</a></h1>
+            <h1><a href="home.php" id="logo">VolareWeb</a></h1>
             <span id="slogan">Fast, Frequent &amp; Safe Flights</span>
             <nav id="top_nav">
                 <?php include_once ('top_nav.php')?>
@@ -25,7 +25,7 @@
         </div>
         <nav>
             <ul id="menu">
-                <li><a href="index.php"><span><span>Home</span></span></a></li>
+                <li><a href="home.php"><span><span>Home</span></span></a></li>
                 <li id="menu_active"><a href="voli.php"><span><span>Voli</span></span></a></li>
                 <li><a href="book.html"><span><span>Book</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>

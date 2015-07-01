@@ -1,5 +1,5 @@
 <ul>
-    <li><a href="index.php" class="nav1">Home</a></li>
+    <li><a href="home.php" class="nav1">Home</a></li>
     <li><a href="#" class="nav2">
             <b>
                 <?php
