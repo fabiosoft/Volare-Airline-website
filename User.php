@@ -105,7 +105,7 @@ session_start();
          * @return bool
          */
 		public function isUserExist($uname){
-			$qr = mysqli_query($this->$db,"SELECT * FROM usr WHERE uname = '".$uname."'");
+			$qr = mysqli_query($this->db,"SELECT * FROM usr WHERE uname = '".$uname."'");
 			echo $row = mysqli_num_rows($qr);
 			if($row > 0){
 				return true;
@@ -146,6 +146,17 @@ session_start();
             return array();
         }
 
+        public function pay_for_flight($flight_id, $seats_bought, $money){
+            $update_flight = "UPDATE fly SET fseat=fseat-" . $seats_bought . " WHERE fid = " . $flight_id;
+            $update_user_money = "UPDATE usr SET umoney=umoney-" . $money . " WHERE uname = "."'" . $this->getUserName() ."'";
+
+            $um = mysqli_query($this->db,$update_user_money);
+            $f = mysqli_query($this->db,$update_flight);
+            if($f === TRUE and $um === TRUE){
+                return TRUE;
+            }
+            return FALSE;
+        }
 
 	}
 ?>
