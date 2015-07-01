@@ -36,7 +36,7 @@
         </div>
         <nav>
             <ul id="menu">
-                <li><a href="index.php"><span><span>Home</span></span></a></li>
+                <li><a href="home.php"><span><span>Home</span></span></a></li>
                 <li><a href="voli.php"><span><span>Voli</span></span></a></li>
                 <li><a href="book.html"><span><span>Book</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>
@@ -57,7 +57,7 @@
                             <?php
                             $low_price_flights = $flight_manager->top_offers(3);
                             foreach ($low_price_flights as $flight) : ?>
-                                <li><span class="right color1">da €<?php echo $flight['fprice']?></span><a href="book2.html"><?php echo $flight['fsrc']?></a></li>
+                                <li><span class="right color1">da &euro;<?php echo $flight['fprice']?></span><a href="book2.html"><?php echo $flight['fsrc']?></a></li>
                             <?php endforeach; ?>
                         </ul>
 
@@ -77,7 +77,7 @@
                                         </div>
                                         <div class="row"> <span class="left">Destination</span>
                                             <input type="checkbox" name="selected">
-                                            <?php echo $this_flight['fdst'] ?> da € <?php echo $this_flight['fprice'] ?>
+                                            <?php echo $this_flight['fdst'] ?> da &euro; <?php echo $this_flight['fprice'] ?>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                             <?php echo $this_flight['ftdst']?>
                                         </div>
                                         <div class="row"> <span class="left">Posti:</span>
-                                            <?php echo $this_flight['fseat'] ?> da <b>€ <?php echo $this_flight['fprice'] ?></b> a persona
+                                            <?php echo $this_flight['fseat'] ?> da <b>&euro; <?php echo $this_flight['fprice'] ?></b> a persona
                                         </div>
                                     </div>
                                 </div>
