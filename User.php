@@ -140,7 +140,10 @@ session_start();
          * @return array
          */
         public function flights_reserved(){
-            return $_SESSION['flights'];
+            if(isset($_SESSION['flights'])) {
+                return $_SESSION['flights'];
+            }
+            return array();
         }
 
 
