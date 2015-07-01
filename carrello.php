@@ -4,6 +4,7 @@ include_once('Flight.php');
 include_once('Cart.php');
 
 $current_user = new User();
+$flight_manager = new Flight();
 
 if($current_user->isLoggedIn()) {
 
@@ -16,22 +17,11 @@ if($current_user->isLoggedIn()) {
     $cart = new Cart();
     $my_flights = $current_user->flights_reserved();
 
-
-
-
-    $flight_manager = new Flight();
-
     if (isset($_POST['fid'])) {
         $flight_id = $_POST['fid'];
         $this_flight = $flight_manager->find($flight_id);
-    } else {
-        echo "no volo selezionato";
-        die();
     }
 
-    echo "<pre>";
-    print_r($my_flights);
-    echo "</pre>";
 }else{
     die("not logged in");
 }
@@ -61,7 +51,7 @@ if($current_user->isLoggedIn()) {
             <ul id="menu">
                 <li><a href="home.php"><span><span>Home</span></span></a></li>
                 <li><a href="voli.php"><span><span>Voli</span></span></a></li>
-                <li><a href="book.html"><span><span>Book</span></span></a></li>
+                <li><a href="carrello.php"><span><span>Carrello</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>
                 <li><a href="safety.html"><span><span>Safety</span></span></a></li>
                 <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
@@ -96,7 +86,7 @@ if($current_user->isLoggedIn()) {
                                         <div class="row"> <span class="left">Partenza</span>
                                             <?php echo $current_flight['fsrc'] ?>
                                         </div>
-                                        <div class="row"> <span class="left">Destination</span>
+                                        <div class="row"> <span class="left">Arrivo</span>
                                             <?php echo $current_flight['fdst'] ?> da &euro; <?php echo $current_flight['fprice'] ?>
                                         </div>
                                     </div>
@@ -114,8 +104,8 @@ if($current_user->isLoggedIn()) {
                             <?php endforeach; ?>
 
                             <div class="pad">
-                                <input type="hidden" name="fid" value=<?php echo $this_flight['fid']?> >
-                                <input class="button_red" type="reset" name="now" value="Acquista ora" />
+
+                                <input class="button_red" type="submit" name="now" value="Acquista ora" />
                                 <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
                             </div>
                         </div>
@@ -128,16 +118,9 @@ if($current_user->isLoggedIn()) {
     <!--footer -->
     <footer>
         <?php include_once('footer.php') ?>
-    </footer>
-    <!--footer end-->
+</footer>
+<!--footer end-->
 </div>
 <script type="text/javascript">Cufon.now();</script>
-<script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        $('.form_5').jqTransform({
-            imgPath: 'jqtransformplugin/img/'
-        });
-    });
-</script>
 </body>
 </html>
