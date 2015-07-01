@@ -130,12 +130,16 @@ session_start();
             return $this->utype;
         }
 
+        public function add_flight($flight_id, $num_seats){
+            $_SESSION['flights'][$flight_id] = $num_seats;
+        }
+
         /**
          * Current user saved flights (fid)
          * @return array
          */
         public function flights_reserved(){
-            return array(1,3,5);
+            return  $_SESSION['flights'];
         }
 	}
 ?>
