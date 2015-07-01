@@ -1,6 +1,8 @@
 # Volare
 
-TODO: Write a project description
+Sviluppare in tecnologia PHP un sito web per acquistare voli aerei.
+
+![Home page](res/home_page_screen.png?raw=true "Home Page")
 
 ## Installation
 
@@ -24,7 +26,7 @@ Quick and dirty website in pure PHP and HTML, no history to tell.
 
 ## Credits
 
-TODO: Write credits
+These files are for teaching and educational purpose, i don't recommend to use them for "real job".
 
 ## License
 
