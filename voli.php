@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>VolareWeb | Book</title>
+    <title>VolareWeb | Carrello</title>
     <?php require_once('head_imports.php') ?>
 </head>
 <body id="page3">
@@ -27,7 +27,7 @@
             <ul id="menu">
                 <li><a href="home.php"><span><span>Home</span></span></a></li>
                 <li id="menu_active"><a href="voli.php"><span><span>Voli</span></span></a></li>
-                <li><a href="book.html"><span><span>Book</span></span></a></li>
+                <li><a href="carrello.php"><span><span>Carrello</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>
                 <li><a href="safety.html"><span><span>Safety</span></span></a></li>
                 <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
@@ -104,11 +104,6 @@
 </div>
 <script type="text/javascript">Cufon.now();</script>
 <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        $('.form_5').jqTransform({
-            imgPath: 'jqtransformplugin/img/'
-        });
-    });
     $(document).ready(function () {
         tabs2.init();
     });

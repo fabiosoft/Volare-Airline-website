@@ -64,7 +64,7 @@
             <ul id="menu">
                 <li id="menu_active"><a href="home.php"><span><span>Home</span></span></a></li>
                 <li><a href="voli.php"><span><span>Voli</span></span></a></li>
-                <li><a href="book.html"><span><span>Book</span></span></a></li>
+                <li><a href="carrello.php"><span><span>Carrello</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>
                 <li><a href="safety.html"><span><span>Safety</span></span></a></li>
                 <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
@@ -168,11 +168,7 @@
     $(document).ready(function () {
         tabs.init();
     });
-    jQuery(document).ready(function ($) {
-        $('#form_1, #form_2, #form_3').jqTransform({
-            imgPath: 'jqtransformplugin/img/'
-        });
-    });
+
     $(window).load(function () {
         $('#slider').nivoSlider({
             effect: 'fade', //Specify sets like: 'fold,fade,sliceDown, sliceDownLeft, sliceUp, sliceUpLeft, sliceUpDown, sliceUpDownLeft'

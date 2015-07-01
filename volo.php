@@ -38,7 +38,7 @@
             <ul id="menu">
                 <li><a href="home.php"><span><span>Home</span></span></a></li>
                 <li><a href="voli.php"><span><span>Voli</span></span></a></li>
-                <li><a href="book.html"><span><span>Book</span></span></a></li>
+                <li><a href="carrello.php"><span><span>Carrello</span></span></a></li>
                 <li><a href="services.html"><span><span>Services</span></span></a></li>
                 <li><a href="safety.html"><span><span>Safety</span></span></a></li>
                 <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
@@ -57,7 +57,7 @@
                             <?php
                             $low_price_flights = $flight_manager->top_offers(3);
                             foreach ($low_price_flights as $flight) : ?>
-                                <li><span class="right color1">da &euro;<?php echo $flight['fprice']?></span><a href="book2.html"><?php echo $flight['fsrc']?></a></li>
+                                <li><span class="right color1">da &euro;<?php echo $flight['fprice']?></span><a href="#"><?php echo $flight['fsrc']?></a></li>
                             <?php endforeach; ?>
                         </ul>
 
@@ -72,10 +72,10 @@
                             <div class="pad">
                                 <div class="wrapper under">
                                     <div class="col1">
-                                        <div class="row"> <span class="left">From</span>
+                                        <div class="row"> <span class="left">Partenza</span>
                                             <?php echo $this_flight['fsrc'] ?>
                                         </div>
-                                        <div class="row"> <span class="left">Destination</span>
+                                        <div class="row"> <span class="left">Arrivo</span>
                                             <input type="checkbox" name="selected">
                                             <?php echo $this_flight['fdst'] ?> da &euro; <?php echo $this_flight['fprice'] ?>
                                         </div>
@@ -125,11 +125,6 @@
 </div>
 <script type="text/javascript">Cufon.now();</script>
 <script type="text/javascript">
-    jQuery(document).ready(function ($) {
-        $('.form_5').jqTransform({
-            imgPath: 'jqtransformplugin/img/'
-        });
-    });
 </script>
 </body>
 </html>
