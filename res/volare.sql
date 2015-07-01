@@ -63,3 +63,4 @@ GRANT SELECT ON `volare`.* TO 'uNormal'@'localhost';
 GRANT USAGE ON `volare`.* TO 'uAdmin'@'localhost' IDENTIFIED BY PASSWORD '*400BF58DFE90766AF20296B3D89A670FC66BEAEC';
 GRANT SELECT ON `volare`.`usr` TO 'uAdmin'@'localhost';
 GRANT SELECT, INSERT, UPDATE, DELETE ON `volare`.`fly`  TO 'uAdmin'@'localhost';
+GRANT SELECT, INSERT, UPDATE, DELETE ON `volare`.`usr`  TO 'uAdmin'@'localhost'; # altrimenti nessun permesso per usr!
