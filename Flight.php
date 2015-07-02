@@ -74,4 +74,9 @@ class Flight {
         }
         return $flights[0];
     }
+
+    public function delete($flight_id){
+        $delete_flight_query = "DELETE FROM fly WHERE fid = " . $flight_id . " LIMIT 1" ;
+        return mysqli_query($this->db,$delete_flight_query);
+    }
 }

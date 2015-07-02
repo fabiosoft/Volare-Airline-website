@@ -7,8 +7,8 @@ $flight_manager = new Flight();
 $cart = new Cart();
 
 if($current_user->isAdmin()) {
-    if (isset($_POST['clear'])) {
-        $cart->remove_all_items($current_user);
+    if (isset($_POST['delete'])) {
+        $deleted_a_flight = $flight_manager->delete($_POST['fid']);
     }
 }else{
     die("you are not an Admin!");
@@ -60,11 +60,16 @@ if($current_user->isAdmin()) {
                 </div>
             </article>
             <article class="col2">
+                <ul class="pad_bot1 list1">
+                    <?php if(isset($deleted_a_flight)) : ?>
+                        <li>Volo cancellato con successo.</li>
+                    <?php endif; ?>
+                </ul>
                 <div class="box1">
                     <h2 class="top">Modifica voli</h2>
                     <?php $all_flights = $flight_manager->index(); ?>
                     <?php foreach ($all_flights as $flight) : ?>
-                        <form id="form_8" action="gestione.php" class="form_5" method="post">
+                        <form id="form_5" action="gestione.php" class="form_5" method="post">
                             <div>
                                 <div class="pad">
                                     <div class="wrapper under">
@@ -81,24 +86,28 @@ if($current_user->isAdmin()) {
                                 <div class="pad">
                                     <div class="wrapper under">
                                         <div class="col1">
-                                            <div class="row"> <span class="left">Partenza:</span>
-                                                <?php echo $flight['fday'] ?> alle <?php echo $flight['ftsrc'] ?>
-                                                <label for="fday" class="uname" data-icon="u">Data</label>
-                                                <input id="fday" name="fday" type="date" placeholder="mysuperusername690" />
-                                                <input type="datetime" name="fday">
+                                            <div class="row"> <span class="left"><b>Partenza:</b></span>
+                                                <br/>
+                                                <label for="fday">Data</label>
+                                                <input id="fday" name="fday" type="date" placeholder=<?php echo $flight['fday'] ?> />
+                                                <br/>
+                                                <label for="ftsrc">Ora</label>
+                                                <input id="ftsrc" name="ftsrc" type="time" placeholder=<?php echo $flight['ftsrc'] ?> />
                                             </div>
-                                            <div class="row"> <span class="left">Arrivo:</span>
-                                                <?php echo $flight['ftdst']?>
+                                            <div class="row"> <span class="left"><b>Arrivo:</b></span>
+                                                <label for="ftdst">Ora</label>
+                                                <input id="ftdst" name="ftdst" type="time" placeholder=<?php echo $flight['ftdst'] ?> />
                                             </div>
                                             <div class="row"> <span class="left">Posti:</span>
-                                                <?php echo $flight['fseat'] ?> da <b>&euro; <?php echo $flight['fprice'] ?></b> a persona
+                                                <input id="fseat" name="fseat" type="text" placeholder=<?php echo $flight['fseat'] ?> />
+                                                <br/>da <b>&euro; <?php echo $flight['fprice'] ?></b> a persona
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="fprice" value=<?php echo $flight['fprice']?> >
                                     <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
-                                    <input class="button_red" type="reset" name="reset" value="Cancella" />
-                                    <input class="button_blue" type="submit" name="buy" value="Acquista" />
+                                    <input class="button_red" type="submit" name="delete" value="Cancella Volo" />
+                                    <input class="button_blue" type="submit" name="buy" value="Aggiorna" />
+                                    <div class="box2"></div>
                                 </div>
                             </div>
                         </form>
