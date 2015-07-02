@@ -5,6 +5,7 @@ include_once('Cart.php');
 
 $current_user = new User();
 $flight_manager = new Flight();
+$cart = new Cart();
 
 if($current_user->isLoggedIn()) {
 
@@ -14,7 +15,7 @@ if($current_user->isLoggedIn()) {
         $current_user->add_flight($_POST['fid'],$seats,$price);
     }
 
-    $cart = new Cart();
+
     $my_flights = $current_user->flights_reserved();
 
     if (isset($_POST['fid'])) {
@@ -23,7 +24,7 @@ if($current_user->isLoggedIn()) {
     }
 
 }else{
-    die("not logged in");
+    $my_flights = array();
 }
 
 ?>
@@ -66,8 +67,14 @@ if($current_user->isLoggedIn()) {
                 <div class="box1">
                     <h2 class="top">Il mio carrello</h2>
                     <div class="pad">
-                        <strong>Hai <?php echo count($my_flights) ?> voli prenotati</strong><br>
-                        Totale: <span class="price"><?php echo $cart->total_amount($current_user) ?>&euro;</span>
+                        <?php if(count($my_flights) > 0) : ?>
+                            <strong>Hai <?php echo count($my_flights) ?> voli prenotati</strong><br>
+                            Totale: <span class="price"><?php echo $cart->total_amount($current_user) ?>&euro;</span>
+                        <?php else :?>
+                            <form id="form_5" action="home.php" class="form_5" method="post">
+                            <input class="button_blue" type="submit" name="login_page" value="Login" />
+                        <?php endif; ?>
+
                         <br/><br/>
                     </div>
                 </div>
@@ -105,17 +112,19 @@ if($current_user->isLoggedIn()) {
 
                         <div class="pad">
                             <div class="wrapper under">
-                                <form id="form_8" action="grazie.php" class="form_5" method="post">
-                                <input class="button_red" type="submit" name="now" value="Acquista ora" />
-                                </form>
+                                <?php if(count($my_flights) > 0) : ?>
+                                    <form id="form_8" action="grazie.php" class="form_5" method="post">
+                                    <input class="button_red" type="submit" name="now" value="Acquista ora" />
+                                    </form>
 
-                                <form id="form_8" action="salvati.php" class="form_5" method="post">
-                                <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
-                                </form>
+                                    <form id="form_8" action="salvati.php" class="form_5" method="post">
+                                    <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
+                                    </form>
 
-                                <form id="form_8" action="voli.php" class="form_5" method="post">
-                                <input class="button_red" type="submit" name="clear" value="Svuota carrello" />
-                                </form>
+                                    <form id="form_8" action="voli.php" class="form_5" method="post">
+                                    <input class="button_red" type="submit" name="clear" value="Svuota carrello" />
+                                    </form>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

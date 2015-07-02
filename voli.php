@@ -71,7 +71,11 @@
 
                     <div class="content">
                         <div class="tab-content" id="Flight">
-                            <form id="form_5" action="volo.php" class="form_5" method="post">
+                            <?php if($current_user->isLoggedIn()) : ?>
+                                <form id="form_5" action="volo.php" class="form_5" method="post">
+                            <?php else :?>
+                                <form id="form_5" action="home.php" class="form_5" method="post">
+                            <?php endif; ?>
                                 <div>
                                     <div class="wrapper">
                                         <h2><?php echo $flight['fsrc']?></h2>
@@ -87,7 +91,11 @@
                                             </div>
                                             <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
                                             <span class="right relative">
-                                                <input class="button_blue" type="submit" name="details" value="Seleziona" />
+                                                <?php if($current_user->isLoggedIn()) : ?>
+                                                    <input class="button_blue" type="submit" name="details" value="Seleziona" />
+                                                <?php else :?>
+                                                    <input class="button_blue" type="submit" name="login_page" value="Login" />
+                                                <?php endif; ?>
                                             </span>
                                         </div>
                                         </div>

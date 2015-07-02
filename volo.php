@@ -57,7 +57,10 @@
                             <?php
                             $low_price_flights = $flight_manager->top_offers(3);
                             foreach ($low_price_flights as $flight) : ?>
-                                <li><span class="right color1">da &euro;<?php echo $flight['fprice']?></span><a href="#"><?php echo $flight['fsrc']?></a></li>
+                                <form id="form_5" action="volo.php" class="form_5" method="post">
+                                    <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
+                                    <li><span class="right color1">da &euro;<?php echo $flight['fprice']?></span><a href="volo.php" onclick="document.forms[0].submit();return false;"><?php echo $flight['fsrc']?></a></li>
+                                </form>
                             <?php endforeach; ?>
                         </ul>
 
@@ -67,7 +70,11 @@
             <article class="col2">
                 <div class="box1">
                     <div class="box2 top"> <strong>Compilare i dettagli</strong> </div>
-                    <form id="form_8" action="carrello.php" class="form_5" method="post">
+                    <?php if($current_user->isLoggedIn()) : ?>
+                        <form id="form_8" action="carrello.php" class="form_5" method="post">
+                    <?php else :?>
+                        <form id="form_5" action="home.php" class="form_5" method="post">
+                    <?php endif; ?>
                         <div>
                             <div class="pad">
                                 <div class="wrapper under">
@@ -107,8 +114,12 @@
                                 </div>
                                 <input type="hidden" name="fprice" value=<?php echo $this_flight['fprice']?> >
                                 <input type="hidden" name="fid" value=<?php echo $this_flight['fid']?> >
-                                <input class="button_red" type="reset" name="reset" value="Cancella" />
-                                <input class="button_blue" type="submit" name="buy" value="Acquista" />
+                                <?php if($current_user->isLoggedIn()) : ?>
+                                    <input class="button_red" type="reset" name="reset" value="Cancella" />
+                                    <input class="button_blue" type="submit" name="buy" value="Acquista" />
+                                <?php else :?>
+                                    <input class="button_blue" type="submit" name="login" value="Login" />
+                                <?php endif; ?>
                             </div>
                         </div>
                     </form>

@@ -193,9 +193,16 @@ session_start();
         }
 
 
+        /**
+         * Can user afford the amount of money?
+         * @param $amount
+         * @return bool
+         */
         public function can_afford($amount){
             return ($this->isLoggedIn() and $this->getMoney() >= $amount);
         }
+
+
 
 	}
 ?>
