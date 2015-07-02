@@ -52,7 +52,7 @@ if($current_user->isLoggedIn()) {
             <ul id="menu">
                 <li><a href="home.php"><span><span>Home</span></span></a></li>
                 <li><a href="voli.php"><span><span>Voli</span></span></a></li>
-                <li><a href="carrello.php"><span><span>Carrello</span></span></a></li>
+                <li id="menu_active"><a href="carrello.php"><span><span>Carrello</span></span></a></li>
                 <?php if($current_user->isAdmin()): ?>
                     <li><a href="gestione.php"><span><span>Gestione</span></span></a></li>
                 <?php endif; ?>
