@@ -11,7 +11,22 @@
         if (isset($_POST['now'])) {
             //buy now
             $my_flights = $current_user->flights_reserved();
-            $success_payed = $current_user->pay_for_flight(1,1,1);
+            $success_payed = FALSE;
+            foreach (array_keys($my_flights) as $cur_flight_id) {
+                //$current_flight = $flight_manager->find($cur_flight_id);
+                $price = abs($my_flights[$cur_flight_id]['price']);
+                if($current_user->can_afford($price)) {
+                    $seats = abs($my_flights[$cur_flight_id]['seats']);
+                    $payed = $current_user->pay_for_flight($cur_flight_id, $seats, $price);
+
+                    $success_payed = $success_payed & $payed; // bitwise AND so i can check all payments were successful
+                    $cart->remove_item($cur_flight_id);
+
+                }else{
+                    $success_payed = FALSE;
+                }
+            }
+
             if($success_payed == TRUE){
                 $cart->remove_all_items($current_user);
             }
@@ -66,13 +81,23 @@
             </article>
             <article class="col2">
                 <div class="box1">
-                    <?php  ?>
-                    <div class="box2 top"> <strong>Acquisto effettuato!</strong> </div>
+                    <div class="box2 top">
+                        <?php if($success_payed == TRUE) : ?>
+                            <strong>Acquisto effettuato!</strong>
+                        <?php else : ?>
+                            <strong>Oops!</strong>
+                        <?php endif; ?>
+                    </div>
                     <div>
                         <div class="pad">
                             <div class="wrapper under">
                                 <div class="col1">
-                                    <div class="row"> <span class="left">Grazie</span>
+                                    <div class="row">
+                                        <?php if($success_payed == TRUE) : ?>
+                                            <span class="left">Grazie</span>
+                                        <?php else : ?>
+                                            <span class="left">Non puoi acquistare tutti i voli.</span>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                                 <span class="price"></span>

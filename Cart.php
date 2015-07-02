@@ -38,4 +38,10 @@ class Cart {
         }
     }
 
+    public function remove_item($flight_id){
+        if(isset($_SESSION['flights'][$flight_id])) {
+            unset($_SESSION['flights'][$flight_id]);
+        }
+    }
+
 }

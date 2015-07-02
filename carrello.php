@@ -83,10 +83,10 @@ if($current_user->isLoggedIn()) {
                         <div class="pad">
                             <div class="wrapper under">
                                 <div class="col1">
-                                    <div class="row"> <span class="left">Partenza</span>
+                                    <div class="row"> <span class="left">Partenza: </span>
                                         <?php echo $current_flight['fsrc'] ?>
                                     </div>
-                                    <div class="row"> <span class="left">Arrivo</span>
+                                    <div class="row"> <span class="left">Arrivo: </span>
                                         <?php echo $current_flight['fdst'] ?> da &euro; <?php echo $current_flight['fprice'] ?>
                                     </div>
                                 </div>

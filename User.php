@@ -123,11 +123,21 @@ session_start();
         }
 
         public function getMoney(){
-            return $this->umoney;
+            $get_user_money_query = "SELECT umoney FROM usr WHERE uname = '" . $this->getUserName() . "' LIMIT 1";
+            $res = mysqli_query($this->db,$get_user_money_query);
+            while($user = $res->fetch_object()){
+                return $user->umoney;
+            }
+            return 0;
         }
 
         public function getUserType(){
-            return $this->utype;
+            $get_user_type_query = "SELECT utype FROM usr WHERE uname = '" . $this->getUserName() . "' LIMIT 1";
+            $res = mysqli_query($this->db,$get_user_type_query);
+            while($user = $res->fetch_object()){
+                return $user->utype;
+            }
+            return NULL;
         }
 
         public function add_flight($flight_id, $num_seats,$price){
@@ -161,7 +171,8 @@ session_start();
 
             $um = mysqli_query($this->db,$update_user_money);
             $f = mysqli_query($this->db,$update_flight);
-            if($f === TRUE and $um === TRUE){
+
+            if($f == TRUE and $um == TRUE){
                 return TRUE;
             }
             return FALSE;
@@ -179,6 +190,11 @@ session_start();
                 }
             }
             return $success_cart_saving;
+        }
+
+
+        public function can_afford($amount){
+            return ($this->isLoggedIn() and $this->getMoney() >= $amount);
         }
 
 	}
