@@ -10,6 +10,11 @@ if($current_user->isAdmin()) {
     if (isset($_POST['delete'])) {
         $deleted_a_flight = $flight_manager->delete($_POST['fid']);
     }
+
+    if (isset($_POST['update'])) {
+        $update_a_flight = $flight_manager->update($_POST['fid'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat']);
+    }
+
 }else{
     die("you are not an Admin!");
 }
@@ -64,6 +69,9 @@ if($current_user->isAdmin()) {
                     <?php if(isset($deleted_a_flight)) : ?>
                         <li>Volo cancellato con successo.</li>
                     <?php endif; ?>
+                    <?php if(isset($update_a_flight)) : ?>
+                        <li>Volo cancellato con successo.</li>
+                    <?php endif; ?>
                 </ul>
                 <div class="box1">
                     <h2 class="top">Modifica voli</h2>
@@ -89,24 +97,24 @@ if($current_user->isAdmin()) {
                                             <div class="row"> <span class="left"><b>Partenza:</b></span>
                                                 <br/>
                                                 <label for="fday">Data</label>
-                                                <input id="fday" name="fday" type="date" placeholder=<?php echo $flight['fday'] ?> />
+                                                <input id="fday" name="fday" type="date" value=<?php echo $flight['fday'] ?>  onblur="if(this.value=='') this.value=<?php echo $flight['fday'] ?>" onFocus="if(this.value ==<?php echo $flight['fday'] ?> ) this.value=''" placeholder=<?php echo $flight['fday'] ?> />
                                                 <br/>
                                                 <label for="ftsrc">Ora</label>
-                                                <input id="ftsrc" name="ftsrc" type="time" placeholder=<?php echo $flight['ftsrc'] ?> />
+                                                <input id="ftsrc" name="ftsrc" type="time" value=<?php echo $flight['ftsrc'] ?>  onblur="if(this.value=='') this.value=<?php echo $flight['ftsrc'] ?>" onFocus="if(this.value ==<?php echo $flight['ftsrc'] ?> ) this.value=''" placeholder=<?php echo $flight['ftsrc'] ?> />
                                             </div>
                                             <div class="row"> <span class="left"><b>Arrivo:</b></span>
                                                 <label for="ftdst">Ora</label>
-                                                <input id="ftdst" name="ftdst" type="time" placeholder=<?php echo $flight['ftdst'] ?> />
+                                                <input id="ftdst" name="ftdst" type="time" value=<?php echo $flight['ftdst'] ?>  onblur="if(this.value=='') this.value=<?php echo $flight['ftdst'] ?>" onFocus="if(this.value ==<?php echo $flight['ftdst'] ?> ) this.value=''" placeholder=<?php echo $flight['ftdst'] ?> />
                                             </div>
                                             <div class="row"> <span class="left">Posti:</span>
-                                                <input id="fseat" name="fseat" type="text" placeholder=<?php echo $flight['fseat'] ?> />
+                                                <input id="fseat" name="fseat" type="text" value=<?php echo $flight['fseat'] ?>  onblur="if(this.value=='') this.value=<?php echo $flight['fseat'] ?>" onFocus="if(this.value ==<?php echo $flight['fseat'] ?> ) this.value=''" placeholder=<?php echo $flight['fseat'] ?> />
                                                 <br/>da <b>&euro; <?php echo $flight['fprice'] ?></b> a persona
                                             </div>
                                         </div>
                                     </div>
                                     <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
                                     <input class="button_red" type="submit" name="delete" value="Cancella Volo" />
-                                    <input class="button_blue" type="submit" name="buy" value="Aggiorna" />
+                                    <input class="button_blue" type="submit" name="update" value="Aggiorna" />
                                     <div class="box2"></div>
                                 </div>
                             </div>

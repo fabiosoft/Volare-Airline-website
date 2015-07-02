@@ -75,8 +75,29 @@ class Flight {
         return $flights[0];
     }
 
+    /**
+     * Remove a flight from the db
+     * @param $flight_id
+     * @return bool|mysqli_result
+     */
     public function delete($flight_id){
-        $delete_flight_query = "DELETE FROM fly WHERE fid = " . $flight_id . " LIMIT 1" ;
+        $delete_flight_query = "DELETE FROM fly WHERE fid = " . $flight_id . " LIMIT 1";
         return mysqli_query($this->db,$delete_flight_query);
+    }
+
+
+    /**
+     * Update a flight
+     * @param $flight_id
+     * @param $flight_fday
+     * @param $flight_ftsrc
+     * @param $flight_ftdst
+     * @param $flight_fseat
+     * @return bool|mysqli_result
+     */
+    public function update($flight_id, $flight_fday,$flight_ftsrc,$flight_ftdst,$flight_fseat){
+        $update_flight_query = "UPDATE fly SET fday = '" . $flight_fday . "', ftsrc =  '" . $flight_ftsrc .
+            "', ftdst = '" . $flight_ftdst . "', fseat =  '" . $flight_fseat . "' WHERE fid = '" . $flight_id . "'";
+        return mysqli_query($this->db,$update_flight_query);
     }
 }
