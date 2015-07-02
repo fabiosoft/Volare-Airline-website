@@ -55,7 +55,7 @@ if($current_user->isAdmin()) {
         <div class="wrapper pad1">
             <article class="col1">
                 <div class="box1">
-                    <h2 class="top">Nuovo Volo</h2>
+                    <h2 class="top">Menu</h2>
                     <div class="pad"> <strong></strong><br>
                         <ul class="pad_bot1 list1">
                             <li><a href="create_volo.php">Inserisci un nuovo volo.</a></li>
@@ -70,7 +70,7 @@ if($current_user->isAdmin()) {
                         <li>Volo cancellato con successo.</li>
                     <?php endif; ?>
                     <?php if(isset($update_a_flight)) : ?>
-                        <li>Volo cancellato con successo.</li>
+                        <li>Volo modificato con successo.</li>
                     <?php endif; ?>
                 </ul>
                 <div class="box1">
