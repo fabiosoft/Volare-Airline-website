@@ -7,13 +7,6 @@ $flight_manager = new Flight();
 $cart = new Cart();
 
 if($current_user->isAdmin()) {
-    if (isset($_POST['delete'])) {
-        $deleted_a_flight = $flight_manager->delete($_POST['fid']);
-    }
-
-    if (isset($_POST['update'])) {
-        $update_a_flight = $flight_manager->update($_POST['fid'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat']);
-    }
 
 }else{
     die("you are not an Admin!");
@@ -78,7 +71,7 @@ if($current_user->isAdmin()) {
                                             <div class="row"> <span class="left"><b>Volo:</b></span>
                                                 <br/>
                                                 <label for="fsrc">Partenza</label>
-                                                <input id="fsrc" name="fsrc" type="text" placeholder="aereoporto partenza" value=<?php echo $qualcosa ?>/>
+                                                <input id="fsrc" name="fsrc" type="text" placeholder="aereoporto partenza"/>
                                                 <br/>
                                                 <label for="fdst">Arrivo</label>
                                                 <input id="fdst" name="fdst" type="text" placeholder="aereoporto arrivo"/>
@@ -102,7 +95,7 @@ if($current_user->isAdmin()) {
                                                 <label for="ftdst">Ora</label>
                                                 <input id="ftdst" name="ftdst" type="time"/>
                                             </div>
-                                            <div class="row"> <span class="left">Nmero posti:</span>
+                                            <div class="row"> <span class="left">Numero posti:</span>
                                                 <input id="fseat" name="fseat" type="text" placeholder="#"/>
                                                 <br/>da <input id="fprice" name="fprice" type="number" placeholder="€"/> a persona
                                             </div>

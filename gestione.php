@@ -15,6 +15,10 @@ if($current_user->isAdmin()) {
         $update_a_flight = $flight_manager->update($_POST['fid'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat']);
     }
 
+    if(isset($_POST['insert'])){
+        $insert_a_flight = $flight_manager->add($_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat'],$_POST['fprice']);
+    }
+
 }else{
     die("you are not an Admin!");
 }

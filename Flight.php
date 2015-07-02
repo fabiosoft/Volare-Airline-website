@@ -100,7 +100,8 @@ class Flight {
         return mysqli_query($this->db,$update_flight_query);
     }
 
-    public function add(){
-
+    public function add ($flight_fday,$flight_ftsrc,$flight_ftdst,$flight_fseat,$flight_price){
+        $insert_flight_query = "INSERT INTO fly (fday, ftsrc, ftdst, fseat, fprice) VALUES ('" . $flight_fday . "','" . $flight_ftsrc ."','" . $flight_ftdst . "','" . $flight_fseat . "','" . $flight_price . "')";
+        die($insert_flight_query);
     }
 }
