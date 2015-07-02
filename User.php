@@ -140,6 +140,13 @@ session_start();
             return NULL;
         }
 
+        public function isAdmin(){
+            if($this->isLoggedIn()){
+                return $this->getUserType() == 'A';
+            }
+            return FALSE;
+        }
+
         public function add_flight($flight_id, $num_seats,$price){
             $_SESSION['flights'][$flight_id]['seats'] = $num_seats;
             $_SESSION['flights'][$flight_id]['price'] = $price;

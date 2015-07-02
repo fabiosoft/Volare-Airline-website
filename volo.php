@@ -39,9 +39,9 @@
                 <li><a href="home.php"><span><span>Home</span></span></a></li>
                 <li><a href="voli.php"><span><span>Voli</span></span></a></li>
                 <li><a href="carrello.php"><span><span>Carrello</span></span></a></li>
-                <li><a href="services.html"><span><span>Services</span></span></a></li>
-                <li><a href="safety.html"><span><span>Safety</span></span></a></li>
-                <li class="end"><a href="contacts.html"><span><span>Contacts</span></span></a></li>
+                <?php if($current_user->isAdmin()): ?>
+                    <li><a href="gestione.php"><span><span>Gestione</span></span></a></li>
+                <?php endif; ?>
             </ul>
         </nav>
     </header>
