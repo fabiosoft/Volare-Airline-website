@@ -142,10 +142,19 @@ session_start();
         public function flights_reserved(){
             if(isset($_SESSION['flights'])) {
                 return $_SESSION['flights'];
+            }else if(isset($_COOKIE[$this->getUserName()."-cart"])){
+                return unserialize($_COOKIE[$this->getUserName()."-cart"]);
             }
             return array();
         }
 
+        /**
+         * Decrease flight seats and user money
+         * @param $flight_id
+         * @param $seats_bought
+         * @param $money
+         * @return bool
+         */
         public function pay_for_flight($flight_id, $seats_bought, $money){
             $update_flight = "UPDATE fly SET fseat=fseat-" . $seats_bought . " WHERE fid = " . $flight_id;
             $update_user_money = "UPDATE usr SET umoney=umoney-" . $money . " WHERE uname = "."'" . $this->getUserName() ."'";
@@ -156,6 +165,20 @@ session_start();
                 return TRUE;
             }
             return FALSE;
+        }
+
+        /**
+         * Store my cart for 24 hours
+         */
+        public function save_my_cart(){
+            $success_cart_saving = FALSE;
+            if($this->isLoggedIn()) {
+                $my_flights = $this->flights_reserved();
+                if (count($my_flights) > 0) {
+                    $success_cart_saving = setcookie($this->getUserName()."-cart", serialize($my_flights),time()+60*60*24); //stands for 24h
+                }
+            }
+            return $success_cart_saving;
         }
 
 	}

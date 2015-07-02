@@ -76,50 +76,49 @@ if($current_user->isLoggedIn()) {
                 <div class="box1">
                     <div class="box2 top"> <strong>Riepilogo voli</strong> </div>
 
-                        <div>
-                            <?php foreach (array_keys($my_flights) as $cur_flight_id) : ?>
-                            <?php $current_flight = $flight_manager->find($cur_flight_id) ?>
+                    <div>
+                        <?php foreach (array_keys($my_flights) as $cur_flight_id) : ?>
+                        <?php $current_flight = $flight_manager->find($cur_flight_id) ?>
 
-                            <div class="pad">
-                                <div class="wrapper under">
-                                    <div class="col1">
-                                        <div class="row"> <span class="left">Partenza</span>
-                                            <?php echo $current_flight['fsrc'] ?>
-                                        </div>
-                                        <div class="row"> <span class="left">Arrivo</span>
-                                            <?php echo $current_flight['fdst'] ?> da &euro; <?php echo $current_flight['fprice'] ?>
-                                        </div>
+                        <div class="pad">
+                            <div class="wrapper under">
+                                <div class="col1">
+                                    <div class="row"> <span class="left">Partenza</span>
+                                        <?php echo $current_flight['fsrc'] ?>
                                     </div>
-                                    <?php
-                                        $price = $my_flights[$cur_flight_id]['price']; $seats = $my_flights[$cur_flight_id]['seats'];
-                                        $this_flight_seats_price = $price * $seats;
-                                    ?>
-                                    <span class="price"><?php echo $this_flight_seats_price  ?>&euro;</span>
+                                    <div class="row"> <span class="left">Arrivo</span>
+                                        <?php echo $current_flight['fdst'] ?> da &euro; <?php echo $current_flight['fprice'] ?>
+                                    </div>
                                 </div>
-                            </div>
-
-
-                            <div class="wrapper pad_bot2"></div> <!-- division line -->
-
-                            <?php endforeach; ?>
-
-                            <div class="pad">
-                                <div class="wrapper under">
-                                    <form id="form_8" action="grazie.php" class="form_5" method="post">
-                                    <input class="button_red" type="submit" name="now" value="Acquista ora" />
-                                    </form>
-
-                                    <form id="form_8" action="salvati.php" class="form_5" method="post">
-                                    <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
-                                    </form>
-
-                                    <form id="form_8" action="voli.php" class="form_5" method="post">
-                                    <input class="button_red" type="submit" name="clear" value="Svuota carrello" />
-                                    </form>
-                                </div>
+                                <?php
+                                    $price = $my_flights[$cur_flight_id]['price']; $seats = $my_flights[$cur_flight_id]['seats'];
+                                    $this_flight_seats_price = $price * $seats;
+                                ?>
+                                <span class="price"><?php echo $this_flight_seats_price  ?>&euro;</span>
                             </div>
                         </div>
-                    </form>
+
+
+                        <div class="wrapper pad_bot2"></div> <!-- division line -->
+
+                        <?php endforeach; ?>
+
+                        <div class="pad">
+                            <div class="wrapper under">
+                                <form id="form_8" action="grazie.php" class="form_5" method="post">
+                                <input class="button_red" type="submit" name="now" value="Acquista ora" />
+                                </form>
+
+                                <form id="form_8" action="salvati.php" class="form_5" method="post">
+                                <input class="button_blue" type="submit" name="later" value="Acquista più tardi" />
+                                </form>
+
+                                <form id="form_8" action="voli.php" class="form_5" method="post">
+                                <input class="button_red" type="submit" name="clear" value="Svuota carrello" />
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </article>
         </div>
