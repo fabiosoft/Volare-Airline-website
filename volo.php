@@ -7,7 +7,7 @@
 
     if(isset($_POST['fid'])){
         $flight_id = $_POST['fid'];
-        $this_flight = $flight_manager->find($flight_id);
+        $flight = $flight_manager->find($flight_id);
     }else{
         echo "no volo selezionato";
         die();
@@ -80,11 +80,11 @@
                                 <div class="wrapper under">
                                     <div class="col1">
                                         <div class="row"> <span class="left">Partenza</span>
-                                            <?php echo $this_flight['fsrc'] ?>
+                                            <?php echo $flight['fsrc'] ?>
                                         </div>
                                         <div class="row"> <span class="left">Arrivo</span>
                                             <input type="checkbox" name="selected">
-                                            <?php echo $this_flight['fdst'] ?> da &euro; <?php echo $this_flight['fprice'] ?>
+                                            <?php echo $flight['fdst'] ?> da &euro; <?php echo $flight['fprice'] ?>
                                         </div>
                                     </div>
                                 </div>
@@ -102,18 +102,18 @@
                                 <div class="wrapper under">
                                     <div class="col1">
                                         <div class="row"> <span class="left">Partenza:</span>
-                                            <?php echo $this_flight['fday'] ?> alle <?php echo $this_flight['ftsrc'] ?>
+                                            <?php echo $flight['fday'] ?> alle <?php echo $flight['ftsrc'] ?>
                                         </div>
                                         <div class="row"> <span class="left">Arrivo:</span>
-                                            <?php echo $this_flight['ftdst']?>
+                                            <?php echo $flight['ftdst']?>
                                         </div>
                                         <div class="row"> <span class="left">Posti:</span>
-                                            <?php echo $this_flight['fseat'] ?> da <b>&euro; <?php echo $this_flight['fprice'] ?></b> a persona
+                                            <?php echo $flight['fseat'] ?> da <b>&euro; <?php echo $flight['fprice'] ?></b> a persona
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="fprice" value=<?php echo $this_flight['fprice']?> >
-                                <input type="hidden" name="fid" value=<?php echo $this_flight['fid']?> >
+                                <input type="hidden" name="fprice" value=<?php echo $flight['fprice']?> >
+                                <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
                                 <?php if($current_user->isLoggedIn()) : ?>
                                     <input class="button_red" type="reset" name="reset" value="Cancella" />
                                     <input class="button_blue" type="submit" name="buy" value="Acquista" />
