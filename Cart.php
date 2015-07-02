@@ -23,9 +23,18 @@ class Cart {
         return NULL;
     }
 
+    /**
+     * Empty the cart
+     * @param User $current_user
+     */
     public function remove_all_items(User $current_user){
-        if($current_user->isLoggedIn() and isset($_SESSION['flights'])) {
-            unset($_SESSION['flights']);
+        if($current_user->isLoggedIn()){
+            if(isset($_SESSION['flights'])) {
+                unset($_SESSION['flights']);
+            }
+            if(isset($_COOKIE[$current_user->getUserName() . '-cart'])) {
+                setcookie($current_user->getUserName() . '-cart', null);
+            }
         }
     }
 
