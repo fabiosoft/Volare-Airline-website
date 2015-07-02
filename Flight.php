@@ -85,7 +85,6 @@ class Flight {
         return mysqli_query($this->db,$delete_flight_query);
     }
 
-
     /**
      * Update a flight
      * @param $flight_id
@@ -99,5 +98,9 @@ class Flight {
         $update_flight_query = "UPDATE fly SET fday = '" . $flight_fday . "', ftsrc =  '" . $flight_ftsrc .
             "', ftdst = '" . $flight_ftdst . "', fseat =  '" . $flight_fseat . "' WHERE fid = '" . $flight_id . "'";
         return mysqli_query($this->db,$update_flight_query);
+    }
+
+    public function add(){
+
     }
 }
