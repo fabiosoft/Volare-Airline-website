@@ -1,6 +1,7 @@
 <?php
 
 include_once('config.php');
+include_once('DateHelper.php');
 
 /**
  * Class Flight
@@ -109,30 +110,36 @@ class Flight {
         return mysqli_query($this->db,$insert_flight_query);
     }
 
-
+    /**
+     * Tests every input passed from a form and validate every field
+     * @param $input_array usually $_POST or $_GET
+     * @return array of error messages
+     */
     public static function validate($input_array){
         $errors = array();
         $properties_to_check = ['fsrc','fdst','fday','ftsrc','ftdst','fseat','fprice'];
 
         foreach($properties_to_check as $property){
             $valid = TRUE;
+            $field = $input_array[$property];
 
             switch ($property){
                 case "fsrc":
                 case "fdst":
-                    $valid = (isset($input_array[$property]) and filter_var($input_array[$property], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>IATA_REGEX)))) & TRUE;
+                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>IATA_REGEX)))) & TRUE;
+                    break;
+                case "fday":
+                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>DATE_REGEX)))) & TRUE;
                     break;
                 case "fprice":
-                    $valid = (isset($input_array[$property]) and filter_var($input_array[$property], FILTER_VALIDATE_INT)) & TRUE;
+                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_INT)) & TRUE;
                     break;
             }
-
-            if($valid == FALSE){ array_push($errors , "error - " . $property); }
+            if($valid == FALSE){ array_push($errors , "Validazione errata: " . $property); }
 
             //DEBUG - Show every validation output
-            echo  $property . " VALID = " . $valid . "<br/>";
+            echo  $property . " VALID = " . $valid . " - field: " . $field ."<br/>";
         }
-
 
         return $errors;
     }
