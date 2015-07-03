@@ -16,7 +16,15 @@ if($current_user->isAdmin()) {
     }
 
     if(isset($_POST['insert'])){
-        $insert_a_flight = $flight_manager->add($_POST['fsrc'],$_POST['fdst'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat'],$_POST['fprice']);
+
+        if(count(Flight::validate($_POST)) == 0){
+            echo "VALIDO";
+        }else{
+            echo "NOT VALIDO";
+        }
+        die();
+
+        //$insert_a_flight = $flight_manager->add($_POST['fsrc'],$_POST['fdst'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat'],$_POST['fprice']);
     }
 
 }else{

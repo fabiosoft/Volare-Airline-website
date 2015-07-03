@@ -1,5 +1,7 @@
 <?php
 
+include_once('config.php');
+
 /**
  * Class Flight
  * Flight manager
@@ -105,5 +107,33 @@ class Flight {
             "VALUES ('" . $flight_departure_name . "','" . $flight_arrival_name .  "','" . $flight_fday . "','" . $flight_ftsrc ."','" . $flight_ftdst . "','" . $flight_fseat . "','" . $flight_price . "')";
         echo $insert_flight_query;
         return mysqli_query($this->db,$insert_flight_query);
+    }
+
+
+    public static function validate($input_array){
+        $errors = array();
+        $properties_to_check = ['fsrc','fdst','fday','ftsrc','ftdst','fseat','fprice'];
+
+        foreach($properties_to_check as $property){
+            $valid = TRUE;
+
+            switch ($property){
+                case "fsrc":
+                case "fdst":
+                    $valid = (isset($input_array[$property]) and filter_var($input_array[$property], FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>IATA_REGEX)))) & TRUE;
+                    break;
+                case "fprice":
+                    $valid = (isset($input_array[$property]) and filter_var($input_array[$property], FILTER_VALIDATE_INT)) & TRUE;
+                    break;
+            }
+
+            if($valid == FALSE){ array_push($errors , "error - " . $property); }
+
+            //DEBUG - Show every validation output
+            echo  $property . " VALID = " . $valid . "<br/>";
+        }
+
+
+        return $errors;
     }
 }

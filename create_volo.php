@@ -98,7 +98,7 @@ if($current_user->isAdmin()) {
                                             </div>
                                             <div class="row"> <span class="left">Posti:</span>
                                                 <input id="fseat" name="fseat" type="text" placeholder="#" value="1"/>
-                                                <br/>da <input id="fprice" name="fprice" type="number" placeholder="€"/> a persona
+                                                <br/>da <input id="fprice" name="fprice" type="text" placeholder="€"/> a persona
                                             </div>
                                         </div>
                                     </div>
