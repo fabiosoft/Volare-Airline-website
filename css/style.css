@@ -1079,7 +1079,6 @@ a.jqTransformSelectOpen {
 	border:1px solid #e5e5e5;
 	font:12px Arial, Helvetica, sans-serif;
 	color:#7f7f7f;
-	float:left;
 	padding:2px 7px;
 	height:14px
 }
@@ -1094,5 +1093,10 @@ a.jqTransformSelectOpen {
 	padding:2px 7px;
 	height:457px;
 	margin:0;
-	float:left
+}
+
+input:not([type=submit]):not([type=reset]):not([type=hidden]){
+    border:0;
+    border-bottom: 1px dotted;
+    height: 20px;
 }

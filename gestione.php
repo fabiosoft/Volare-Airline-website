@@ -16,7 +16,7 @@ if($current_user->isAdmin()) {
     }
 
     if(isset($_POST['insert'])){
-        $insert_a_flight = $flight_manager->add($_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat'],$_POST['fprice']);
+        $insert_a_flight = $flight_manager->add($_POST['fsrc'],$_POST['fdst'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat'],$_POST['fprice']);
     }
 
 }else{
@@ -75,6 +75,9 @@ if($current_user->isAdmin()) {
                     <?php endif; ?>
                     <?php if(isset($update_a_flight)) : ?>
                         <li>Volo modificato con successo.</li>
+                    <?php endif; ?>
+                    <?php if(isset($insert_a_flight)) : ?>
+                        <li>Volo inserito con successo.</li>
                     <?php endif; ?>
                 </ul>
                 <div class="box1">

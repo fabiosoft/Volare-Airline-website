@@ -2,6 +2,7 @@
 include_once('Flight.php');
 include_once('User.php');
 include_once('Cart.php');
+include_once('DateHelper.php');
 $current_user = new User();
 $flight_manager = new Flight();
 $cart = new Cart();
@@ -71,7 +72,7 @@ if($current_user->isAdmin()) {
                                             <div class="row"> <span class="left"><b>Volo:</b></span>
                                                 <br/>
                                                 <label for="fsrc">Partenza</label>
-                                                <input id="fsrc" name="fsrc" type="text" placeholder="aereoporto partenza"/>
+                                                <input id="fsrc" name="fsrc" type="text" placeholder="aereoporto partenza">
                                                 <br/>
                                                 <label for="fdst">Arrivo</label>
                                                 <input id="fdst" name="fdst" type="text" placeholder="aereoporto arrivo"/>
@@ -85,18 +86,18 @@ if($current_user->isAdmin()) {
                                             <div class="row"> <span class="left"><b>Partenza:</b></span>
                                                 <br/>
                                                 <label for="fday">Data</label>
-                                                <input id="fday" name="fday" type="date"/>
+                                                <input id="fday" name="fday" type="date" value="<?php echo DateHelper::today_html_input() ?>"/>
                                                 <br/>
                                                 <label for="ftsrc">Ora</label>
-                                                <input id="ftsrc" name="ftsrc" type="time"/>
+                                                <input id="ftsrc" name="ftsrc" type="time" value="<?php echo DateHelper::time_html_input() ?>"/>
                                             </div>
                                             <div class="row"> <span class="left"><b>Arrivo:</b></span>
                                                 <br/>
                                                 <label for="ftdst">Ora</label>
-                                                <input id="ftdst" name="ftdst" type="time"/>
+                                                <input id="ftdst" name="ftdst" type="time" value="<?php echo DateHelper::time_html_input() ?>"/>
                                             </div>
-                                            <div class="row"> <span class="left">Numero posti:</span>
-                                                <input id="fseat" name="fseat" type="text" placeholder="#"/>
+                                            <div class="row"> <span class="left">Posti:</span>
+                                                <input id="fseat" name="fseat" type="text" placeholder="#" value="1"/>
                                                 <br/>da <input id="fprice" name="fprice" type="number" placeholder="€"/> a persona
                                             </div>
                                         </div>
