@@ -131,14 +131,21 @@ class Flight {
                 case "fday":
                     $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>DATE_REGEX)))) & TRUE;
                     break;
+                case "ftsrc":
+                case "ftdst":
+                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>TIME_REGEX)))) & TRUE;
+                    break;
+                case "fseat":
+                    $valid = (isset($field) and $field < MAX_SEATS);
+                    break;
                 case "fprice":
                     $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_INT)) & TRUE;
                     break;
             }
-            if($valid == FALSE){ array_push($errors , "Validazione errata: " . $property); }
+            if($valid == FALSE){ array_push($errors , "Validazione errata: " . $valid); }
 
             //DEBUG - Show every validation output
-            echo  $property . " VALID = " . $valid . " - field: " . $field ."<br/>";
+            echo  $property . " VALID = " . boolval($valid) . " - field: " . $field ."<br/>";
         }
 
         return $errors;
