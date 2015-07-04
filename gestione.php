@@ -8,7 +8,10 @@ $cart = new Cart();
 
 if($current_user->isAdmin()) {
     if (isset($_POST['delete'])) {
-        $deleted_a_flight = $flight_manager->delete($_POST['fid']);
+        $val_errors = Flight::validate($_POST);
+        if(count($val_errors) == 0) {
+            $deleted_a_flight = $flight_manager->delete($_POST['fid']);
+        }
     }
 
     if (isset($_POST['update'])) {

@@ -12,7 +12,11 @@ if($current_user->isLoggedIn()) {
     if (isset($_POST['fid'])) {
         $seats = intval($_POST['adults']) + intval($_POST['children']);
         $price = intval($_POST['fprice']);
-        $current_user->add_flight($_POST['fid'],$seats,$price);
+        $_POST['fseat'] = $seats; //assign sum for validation key
+        $val_errors = Flight::validate($_POST);
+        if(count($val_errors) == 0) {
+            $current_user->add_flight($_POST['fid'], $seats, $price);
+        }
     }
 
 
@@ -67,7 +71,7 @@ if($current_user->isLoggedIn()) {
                 <div class="box1">
                     <h2 class="top">Il mio carrello</h2>
                     <div class="pad">
-                        <?php if(count($my_flights) > 0) : ?>
+                        <?php if($current_user->isLoggedIn()) : ?>
                             <strong>Hai <?php echo count($my_flights) ?> voli prenotati</strong><br>
                             Totale: <span class="price"><?php echo $cart->total_amount($current_user) ?>&euro;</span>
                         <?php else :?>
@@ -81,6 +85,9 @@ if($current_user->isLoggedIn()) {
             </article>
             <article class="col2">
                 <div class="box1">
+                    <ul class="pad_bot1 list1">
+                        <?php include_once('validation_errors.php') ?>
+                    </ul>
                     <div class="box2 top"> <strong>Riepilogo voli</strong> </div>
 
                     <div>

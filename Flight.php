@@ -137,7 +137,7 @@ class Flight {
                         $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => TIME_REGEX)))) & TRUE;
                         break;
                     case "fseat":
-                        $valid = (isset($field) and $field < MAX_SEATS);
+                        $valid = (isset($field) and $field >= 1 and $field < MAX_SEATS);
                         break;
                     case "fprice":
                         $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_INT)) & TRUE;

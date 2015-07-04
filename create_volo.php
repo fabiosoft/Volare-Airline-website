@@ -7,9 +7,7 @@ $current_user = new User();
 $flight_manager = new Flight();
 $cart = new Cart();
 
-if($current_user->isAdmin()) {
-
-}else{
+if(!$current_user->isAdmin()) {
     die("you are not an Admin!");
 }
 
