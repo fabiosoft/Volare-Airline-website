@@ -6,19 +6,27 @@
         $current_user->logout();
     }
 	if(isset($_POST['login'])){
-		$uname = $_POST['uname'];
-		$password = $_POST['upsw'];
-		$auth_user = $current_user->login($uname, $password);
-		if ($auth_user) {
-			// Login Success
-            //echo "Login Success";
-		   //header("location:home.php");
-		} else {
-			// Login Failed
-            //echo "Login Failed";
-			echo "<script>alert('User / Password Not Match')</script>";
-		}
+
+        $val_errors = User::validate($_POST);
+        if(count($val_errors) == 0) {
+            $uname = $_POST['uname'];
+            $password = $_POST['upwd'];
+            $auth_user = $current_user->login($uname, $password);
+            if ($auth_user) {
+                // Login Success
+                //echo "Login Success";
+                //header("location:home.php");
+            } else {
+                // Login Failed
+                //echo "Login Failed";
+                echo "<script>alert('Nome utente e Password non corrispondono. Riprova')</script>";
+            }
+        }else{
+            die("NOT VALID");
+        }
 	}
+
+    //TODO: add new user
 	if(isset($_POST['register'])){
 		$uname = $_POST['uname'];
 		$password = $_POST['upsw'];
@@ -99,7 +107,7 @@
                                             <input name="uname" type="text" class="input" required="required" placeholder="username">
                                         </div>
                                         <div class="row"> <span class="left">Password</span>
-                                            <input name="upsw" type="password" class="input" required="required" placeholder="ex: 123pippo">
+                                            <input name="upwd" type="password" class="input" placeholder="ex: 123pippo">
                                         </div>
 
                                         <div class="wrapper">
