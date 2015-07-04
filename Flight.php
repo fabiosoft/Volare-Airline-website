@@ -142,10 +142,10 @@ class Flight {
                     $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_INT)) & TRUE;
                     break;
             }
-            if($valid == FALSE){ array_push($errors , "Validazione errata: " . $valid); }
+            if($valid == FALSE){ array_push($errors , $property ." :-: " . $field); }
 
             //DEBUG - Show every validation output
-            echo  $property . " VALID = " . boolval($valid) . " - field: " . $field ."<br/>";
+            //echo  $property . " VALID = " . boolval($valid) . " - field: " . $field ."<br/>";
         }
 
         return $errors;

@@ -12,19 +12,18 @@ if($current_user->isAdmin()) {
     }
 
     if (isset($_POST['update'])) {
-        $update_a_flight = $flight_manager->update($_POST['fid'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat']);
+        $val_errors = Flight::validate($_POST);
+        if(count($val_errors) == 0) {
+            $update_a_flight = $flight_manager->update($_POST['fid'], $_POST['fday'], $_POST['ftsrc'], $_POST['ftdst'], $_POST['fseat']);
+        }
     }
 
     if(isset($_POST['insert'])){
 
-        if(count(Flight::validate($_POST)) == 0){
-            echo "VALIDO";
-        }else{
-            echo "NOT VALIDO";
+        $val_errors = Flight::validate($_POST);
+        if(count($val_errors) == 0) {
+            $insert_a_flight = $flight_manager->add($_POST['fsrc'],$_POST['fdst'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat'],$_POST['fprice']);
         }
-        die();
-
-        //$insert_a_flight = $flight_manager->add($_POST['fsrc'],$_POST['fdst'],$_POST['fday'],$_POST['ftsrc'],$_POST['ftdst'],$_POST['fseat'],$_POST['fprice']);
     }
 
 }else{
@@ -78,6 +77,13 @@ if($current_user->isAdmin()) {
             </article>
             <article class="col2">
                 <ul class="pad_bot1 list1">
+                    <?php if(isset($val_errors)): ?>
+                        <?php foreach($val_errors as $error) :?>
+                            <li><b>Validazione errata: </b><?php echo $error ?></li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+
                     <?php if(isset($deleted_a_flight)) : ?>
                         <li>Volo cancellato con successo.</li>
                     <?php endif; ?>
