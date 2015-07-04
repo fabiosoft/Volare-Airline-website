@@ -21,8 +21,6 @@
                 //echo "Login Failed";
                 echo "<script>alert('Nome utente e Password non corrispondono. Riprova')</script>";
             }
-        }else{
-            die("NOT VALID");
         }
 	}
 
@@ -100,8 +98,13 @@
                                     <div class="radio">
                                         <div class="wrapper">
                                             <p>Hello, <b><?php echo $current_user->getUserName() ?></b></p>
+                                            <ul class="pad_bot1 list1">
+                                                <?php include_once("validation_errors.php") ?>
+                                            </ul>
                                         </div>
                                     </div>
+
+
                                     <?php if (!$current_user->isLoggedIn()) : ?>
                                         <div class="row"> <span class="left">Username</span>
                                             <input name="uname" type="text" class="input" required="required" placeholder="username">
