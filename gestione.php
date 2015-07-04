@@ -80,12 +80,7 @@ if($current_user->isAdmin()) {
             </article>
             <article class="col2">
                 <ul class="pad_bot1 list1">
-                    <?php if(isset($val_errors)): ?>
-                        <?php foreach($val_errors as $error) :?>
-                            <li><b>Validazione errata: </b><?php echo $error ?></li>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-
+                    <?php include_once("validation_errors.php") ?>
 
                     <?php if(isset($deleted_a_flight)) : ?>
                         <li>Volo cancellato con successo.</li>
