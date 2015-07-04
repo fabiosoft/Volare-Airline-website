@@ -120,29 +120,31 @@ class Flight {
         $properties_to_check = ['fsrc','fdst','fday','ftsrc','ftdst','fseat','fprice'];
 
         foreach($properties_to_check as $property){
-            $valid = TRUE;
-            $field = $input_array[$property];
+            if(isset($input_array[$property])){
+                $valid = TRUE;
+                $field = $input_array[$property];
 
-            switch ($property){
-                case "fsrc":
-                case "fdst":
-                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>IATA_REGEX)))) & TRUE;
-                    break;
-                case "fday":
-                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>DATE_REGEX)))) & TRUE;
-                    break;
-                case "ftsrc":
-                case "ftdst":
-                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>TIME_REGEX)))) & TRUE;
-                    break;
-                case "fseat":
-                    $valid = (isset($field) and $field < MAX_SEATS);
-                    break;
-                case "fprice":
-                    $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_INT)) & TRUE;
-                    break;
+                switch ($property) {
+                    case "fsrc":
+                    case "fdst":
+                        $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => IATA_REGEX)))) & TRUE;
+                        break;
+                    case "fday":
+                        $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => DATE_REGEX)))) & TRUE;
+                        break;
+                    case "ftsrc":
+                    case "ftdst":
+                        $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => TIME_REGEX)))) & TRUE;
+                        break;
+                    case "fseat":
+                        $valid = (isset($field) and $field < MAX_SEATS);
+                        break;
+                    case "fprice":
+                        $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_INT)) & TRUE;
+                        break;
+                }
+                if($valid == FALSE){ array_push($errors , $property ." :-: " . $field); }
             }
-            if($valid == FALSE){ array_push($errors , $property ." :-: " . $field); }
 
             //DEBUG - Show every validation output
             //echo  $property . " VALID = " . boolval($valid) . " - field: " . $field ."<br/>";
