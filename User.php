@@ -218,32 +218,28 @@ session_start();
         public static function validate($input_array){
             $errors = array();
             $properties_to_check = ['uname', 'upwd', 'umoney', 'utype'];
-
-            print_r($input_array);
-            echo "<br/>";
-
             foreach ($properties_to_check as $property) {
                 if (isset($input_array[$property])) {
                     $valid = TRUE;
                     $field = $input_array[$property];
                     switch ($property) {
                         case "unmae":
-                            $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => UNAME_REGEX)))) & TRUE;
+                            $valid = (isset($field) and preg_match(UNAME_REGEX,$field)) & TRUE;
                             break;
                         case "upwd":
-                            $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => UPWD_REGEX)))) & TRUE;
+                            $valid = (isset($field) and preg_match(UPWD_REGEX,$field)) & TRUE;
                             break;
                         case "umoney":
                             $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_INT) and $field >= 1) & TRUE;
                             break;
                         case "utype":
-                            $valid = (isset($field) and filter_var($field, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => UTYPE_REGEX)))) & TRUE;
+                            $valid = (isset($field) and preg_match(UTYPE_REGEX,$field)) & TRUE;
                             break;
                     }
                     if($valid == FALSE){ array_push($errors , $property ." :-: " . $field); }
                 }
                 //DEBUG - Show every validation output
-                echo  $property . " VALID = " . boolval($valid) . " - field: " . $field ."<br/>";
+                //echo  $property . " VALID = " . boolval($valid) . " - field: " . $field ."<br/>";
             }
 
             return $errors;
