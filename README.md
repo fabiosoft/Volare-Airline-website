@@ -51,3 +51,30 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+## Geek Stats and Stuff
+
+- PHP Files lines written:
+
+	```sh
+	wc -l `find . -iname "*.php"`
+		 150 ./carrello.php
+	      46 ./Cart.php
+	      15 ./config.php
+	     126 ./create_volo.php
+	      23 ./DateHelper.php
+	     154 ./Flight.php
+	       4 ./footer.php
+	     159 ./gestione.php
+	     124 ./grazie.php
+	      16 ./head_imports.php
+	     207 ./home.php
+	      17 ./res/test_validation.php
+	     101 ./salvati.php
+	      12 ./top_nav.php
+	     247 ./User.php
+	      12 ./validation_errors.php
+	     125 ./voli.php
+	     140 ./volo.php
+	    1678 total
+	```
