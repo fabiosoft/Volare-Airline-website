@@ -11,7 +11,7 @@
         if (isset($_POST['now'])) {
             //buy now
             $my_flights = $current_user->flights_reserved();
-            $success_payed = FALSE;
+            $success_payed = TRUE;
             foreach (array_keys($my_flights) as $cur_flight_id) {
                 //$current_flight = $flight_manager->find($cur_flight_id);
                 $price = abs($my_flights[$cur_flight_id]['price']);
@@ -20,7 +20,9 @@
                     $payed = $current_user->pay_for_flight($cur_flight_id, $seats, $price);
 
                     $success_payed = $success_payed & $payed; // bitwise AND so i can check all payments were successful
-                    $cart->remove_item($cur_flight_id);
+                    if($success_payed) {
+                        $cart->remove_item($cur_flight_id);
+                    }
 
                 }else{
                     $success_payed = FALSE;

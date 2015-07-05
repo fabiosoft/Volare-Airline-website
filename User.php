@@ -180,7 +180,7 @@ session_start();
             $um = mysqli_query($this->db,$update_user_money);
             $f = mysqli_query($this->db,$update_flight);
 
-            if($f == TRUE and $um == TRUE){
+            if(boolval($f) == TRUE and boolval($um) == TRUE){
                 return TRUE;
             }
             return FALSE;
