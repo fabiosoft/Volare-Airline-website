@@ -1,7 +1,7 @@
 # Volare
 
-Sviluppare in tecnologia PHP un sito web per acquistare voli aerei.
-
+Sviluppare in tecnologia PHP un sito web per acquistare voli aerei.  
+Develop in PHP technology a website to buy airline flights.
 ![Home page](res/home_page_screen.png?raw=true "Home Page")
 
 ## Installation
@@ -54,7 +54,7 @@ THE SOFTWARE.
 
 ## Geek Stats and Stuff
 
-- PHP Files lines written:
+- PHP Files **lines** written **1678** total:
 
 	```sh
 	wc -l `find . -iname "*.php"`
