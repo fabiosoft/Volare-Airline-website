@@ -118,10 +118,5 @@ if(!$current_user->isAdmin()) {
     <!--footer end-->
 </div>
 <script type="text/javascript">Cufon.now();</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        tabs2.init();
-    });
-</script>
 </body>
 </html>
