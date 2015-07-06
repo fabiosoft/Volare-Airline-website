@@ -23,29 +23,6 @@
             }
         }
 	}
-
-    //TODO: add new user
-	if(isset($_POST['register'])){
-		$uname = $_POST['uname'];
-		$password = $_POST['upsw'];
-		$confirmPassword = $_POST['confirm_password'];
-		if($password == $confirmPassword){
-			$email = $current_user->isUserExist($uname);
-			if(!$email){
-				$register = $current_user->join($username, $uname, $password);
-				if($register){
-					 echo "<script>alert('Registration Successful')</script>";
-				}else{
-					echo "<script>alert('Registration Not Successful')</script>";
-				}
-			} else {
-				echo "<script>alert('Email Already Exist')</script>";
-			}
-		} else {
-			echo "<script>alert('Password Not Match')</script>";
-		
-		}
-	}
 ?>
 <!--------------->
 
@@ -87,9 +64,6 @@
                 <div class="tabs">
                     <ul class="nav">
                         <li class="selected"><a href="#login">Utente</a></li>
-                        <?php if (!$current_user->isLoggedIn()) : ?>
-                            <li class="end"><a href="#join">Registrati</a></li>
-                        <?php endif; ?>
                     </ul>
                     <div class="content">
                         <div class="tab-content" id="login">
@@ -129,37 +103,6 @@
                                 </div>
                                 <?php endif; ?>
                             </form>
-                        </div>
-                        <div class="tab-content" id="join">
-                            <!-- FIXME: not showing! -->
-
-                            <form name="login" method="post" action="">
-                                <h1> Sign up </h1>
-                                <p>
-                                    <label for="usernamesignup" class="uname" data-icon="u">Your username</label>
-                                    <input id="usernamesignup" name="username" required="required" type="text" placeholder="mysuperusername690" />
-                                </p>
-                                <p>
-                                    <label for="emailsignup" class="youmail" data-icon="e" > Your email</label>
-                                    <input id="emailsignup" name="emailid" required="required" type="email" placeholder="mysupermail@mail.com"/>
-                                </p>
-                                <p>
-                                    <label for="passwordsignup" class="youpasswd" data-icon="p">Your password </label>
-                                    <input id="passwordsignup" name="password" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                                </p>
-                                <p>
-                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Please confirm your password </label>
-                                    <input id="passwordsignup_confirm" name="confirm_password" required="required" type="password" placeholder="eg. X8df!90EO"/>
-                                </p>
-                                <p class="signin button">
-                                    <input type="submit" name="register" value="Sign up"/>
-                                </p>
-                                <p class="change_link">
-                                    Already a member ?
-                                    <a href="#tologin" class="to_register"> Go and log in </a>
-                                </p>
-                            </form>
-
                         </div>
                 </div>
             </article>
