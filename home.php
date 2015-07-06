@@ -1,6 +1,14 @@
 <?php
 	include_once('User.php');
+    include_once('config.php');
 	$current_user = new User();
+
+    if(isset($_POST['add_money'])) {
+        $amount_to_add = SIMULATE_MONEY_TO_ADD;
+        if($current_user->add_money($amount_to_add)){
+            echo "<script>alert('Nuovo credito disponibile +" . $amount_to_add . "')</script>";
+        }
+    }
 
     if(isset($_POST['logout'])) {
         $current_user->logout();
@@ -56,7 +64,22 @@
     <!-- / header -->
     <!--content -->
     <section id="content">
-        <div id="slider"></div>
+        <div id="slider">
+            <!-- Promemoria utenti -->
+            <p>Utente normale</p>
+            <ul>
+                <li><b>User:</b>amedeo</li>
+                <li><b>Psw:</b>mozart2012</li>
+            </ul>
+            <br/>
+            <p>Utente admin</p>
+            <ul>
+                <li><b>User:</b>marco</li>
+                <li><b>Psw:</b>m1958</li>
+            </ul>
+            <!-- fine promemoria -->
+        </div>
+
         <div class="for_banners">
 
             <article class="col1">

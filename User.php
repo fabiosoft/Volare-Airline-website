@@ -187,6 +187,19 @@ session_start();
         }
 
         /**
+         * Add an amount of money the the current user
+         * @param $amount
+         * @return bool
+         */
+        public function add_money($amount){
+            if($this->isLoggedIn()) {
+                $update_money = "UPDATE usr SET umoney=umoney+" . $amount . " WHERE uname = '" . $this->getUserName() . "'";
+                return boolval(mysqli_query($this->db, $update_money));
+            }
+            return FALSE;
+        }
+
+        /**
          * Store my cart for 24 hours
          */
         public function save_my_cart(){
