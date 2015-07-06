@@ -91,19 +91,12 @@
                                             </div>
                                             <input type="hidden" name="fsrc" value=<?php echo $flight['fsrc']?> >
                                             <input type="hidden" name="fdst" value=<?php echo $flight['fdst']?> >
+                                        <?php if($current_user->isLoggedIn()) : ?>
+                                            <input class="button_blue" type="submit" name="details" value="Seleziona" />
+                                        <?php else :?>
+                                            <input class="button_blue" type="submit" name="login_page" value="Login" />
+                                        <?php endif; ?>
                                         </div>
-                                        <!--<div class="wrapper under"><span class="left">Orario:</span>
-                                            <div class="col1">
-                                                <h6>Partenza: <?php /*echo $flight['fday']*/?> alle <?php /*echo $flight["ftsrc"] */?></h6>
-                                            </div>
-                                        </div>-->
-                                        <span class="right relative">
-                                            <?php if($current_user->isLoggedIn()) : ?>
-                                                <input class="button_blue" type="submit" name="details" value="Seleziona" />
-                                            <?php else :?>
-                                                <input class="button_blue" type="submit" name="login_page" value="Login" />
-                                            <?php endif; ?>
-                                        </span>
                                     </div>
 
                                     </div>
