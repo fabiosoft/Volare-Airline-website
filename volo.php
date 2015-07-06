@@ -4,11 +4,14 @@
 
     $current_user = new User();
     $flight_manager = new Flight();
+    $flights = array();
 
-    if(isset($_POST['fid'])){
-        $flight_id = $_POST['fid'];
-        $flight = $flight_manager->find($flight_id);
-    }else{
+if(isset($_POST['fsrc']) and isset($_POST['fdst']) ){
+    $flight_src = $_POST['fsrc'];
+    $flight_dst = $_POST['fdst'];
+
+    $flights = $flight_manager->find_flight($flight_src,$flight_dst);
+}else{
         echo "no volo selezionato";
         die();
     }
@@ -69,60 +72,62 @@
             </article>
             <article class="col2">
                 <div class="box1">
-                    <div class="box2 top"> <strong>Compilare i dettagli</strong> </div>
-                    <?php if($current_user->isLoggedIn()) : ?>
-                        <form id="form_8" action="carrello.php" class="form_5" method="post">
-                    <?php else :?>
-                        <form id="form_5" action="home.php" class="form_5" method="post">
-                    <?php endif; ?>
-                        <div>
-                            <div class="pad">
-                                <div class="wrapper under">
-                                    <div class="col1">
-                                        <div class="row"> <span class="left">Partenza</span>
-                                            <?php echo $flight['fsrc'] ?>
-                                        </div>
-                                        <div class="row"> <span class="left">Arrivo</span>
-                                            <input type="checkbox" name="selected">
-                                            <?php echo $flight['fdst'] ?> da &euro; <?php echo $flight['fprice'] ?>
+                    <?php foreach( $flights as $flight ) :?>
+                        <div class="box2 top"> <strong>Compilare i dettagli</strong> </div>
+                        <?php if($current_user->isLoggedIn()) : ?>
+                            <form id="form_8" action="carrello.php" class="form_5" method="post">
+                        <?php else :?>
+                            <form id="form_5" action="home.php" class="form_5" method="post">
+                        <?php endif; ?>
+                            <div>
+                                <div class="pad">
+                                    <div class="wrapper under">
+                                        <div class="col1">
+                                            <div class="row"> <span class="left">Partenza</span>
+                                                <?php echo $flight['fsrc'] ?>
+                                            </div>
+                                            <div class="row"> <span class="left">Arrivo</span>
+                                                <input type="checkbox" name="selected">
+                                                <?php echo $flight['fdst'] ?> da &euro; <?php echo $flight['fprice'] ?>
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="wrapper pad_bot2"> <span class="left">Viaggiatori</span>
+                                        <div class="col2">
+                                            <input name="adults" type="text" class="input2" value="1"  onblur="if(this.value=='') this.value='1'" onFocus="if(this.value =='1' ) this.value=''">
+                                            <span class="left">Adults</span>
+                                            <input name="children" type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
+                                            <span class="left">Children</span> </div>
+                                    </div>
                                 </div>
-                                <div class="wrapper pad_bot2"> <span class="left">Viaggiatori</span>
-                                    <div class="col2">
-                                        <input name="adults" type="text" class="input2" value="1"  onblur="if(this.value=='') this.value='1'" onFocus="if(this.value =='1' ) this.value=''">
-                                        <span class="left">Adults</span>
-                                        <input name="children" type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
-                                        <span class="left">Children</span> </div>
-                                </div>
-                            </div>
-                            <div class="box2"></div>
+                                <div class="box2"></div>
 
-                            <div class="pad">
-                                <div class="wrapper under">
-                                    <div class="col1">
-                                        <div class="row"> <span class="left">Partenza:</span>
-                                            <?php echo $flight['fday'] ?> alle <?php echo $flight['ftsrc'] ?>
-                                        </div>
-                                        <div class="row"> <span class="left">Arrivo:</span>
-                                            <?php echo $flight['ftdst']?>
-                                        </div>
-                                        <div class="row"> <span class="left">Posti:</span>
-                                            <?php echo $flight['fseat'] ?> da <b>&euro; <?php echo $flight['fprice'] ?></b> a persona
+                                <div class="pad">
+                                    <div class="wrapper under">
+                                        <div class="col1">
+                                            <div class="row"> <span class="left">Partenza:</span>
+                                                <?php echo $flight['fday'] ?> alle <?php echo $flight['ftsrc'] ?>
+                                            </div>
+                                            <div class="row"> <span class="left">Arrivo:</span>
+                                                <?php echo $flight['ftdst']?>
+                                            </div>
+                                            <div class="row"> <span class="left">Posti:</span>
+                                                <?php echo $flight['fseat'] ?> da <b>&euro; <?php echo $flight['fprice'] ?></b> a persona
+                                            </div>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="fprice" value=<?php echo $flight['fprice']?> >
+                                    <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
+                                    <?php if($current_user->isLoggedIn()) : ?>
+                                        <input class="button_red" type="reset" name="reset" value="Cancella" />
+                                        <input class="button_blue" type="submit" name="buy" value="Acquista" />
+                                    <?php else :?>
+                                        <input class="button_blue" type="submit" name="login" value="Login" />
+                                    <?php endif; ?>
                                 </div>
-                                <input type="hidden" name="fprice" value=<?php echo $flight['fprice']?> >
-                                <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
-                                <?php if($current_user->isLoggedIn()) : ?>
-                                    <input class="button_red" type="reset" name="reset" value="Cancella" />
-                                    <input class="button_blue" type="submit" name="buy" value="Acquista" />
-                                <?php else :?>
-                                    <input class="button_blue" type="submit" name="login" value="Login" />
-                                <?php endif; ?>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    <?php endforeach; ?>
                 </div>
             </article>
         </div>
