@@ -54,7 +54,7 @@ THE SOFTWARE.
 
 ## Geek Stats and Stuff
 
-- PHP Files **lines** written **1678** total:
+- PHP Files **lines** written **~1678** total:
 
 	```sh
 	wc -l `find . -iname "*.php"`
