@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>VolareWeb | Carrello</title>
+    <title>VolareWeb | Voli</title>
     <?php require_once('head_imports.php') ?>
 </head>
 <body id="page3">
@@ -78,27 +78,33 @@
                             <?php endif; ?>
                                 <div>
                                     <div class="wrapper">
-                                        <h2><?php echo $flight['fsrc']?></h2>
+                                        <h2><?php echo $flight['fsrc'] . " - " . $flight['fdst']?></h2>
                                     </div>
 
                                     <div class="pad">
-                                        <div class="wrapper under"> <span class="left">Flights</span>
+                                        <div class="wrapper under"> <span class="left">Volo:</span>
                                             <div class="cols marg_right1">
                                                 <h6><?php echo $flight['fsrc']?></h6>
                                             </div>
                                             <div class="cols">
                                                 <h5><?php echo $flight['fdst']?></h5>
                                             </div>
-                                            <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
-                                            <span class="right relative">
-                                                <?php if($current_user->isLoggedIn()) : ?>
-                                                    <input class="button_blue" type="submit" name="details" value="Seleziona" />
-                                                <?php else :?>
-                                                    <input class="button_blue" type="submit" name="login_page" value="Login" />
-                                                <?php endif; ?>
-                                            </span>
+                                            <input type="hidden" name="fsrc" value=<?php echo $flight['fsrc']?> >
+                                            <input type="hidden" name="fdst" value=<?php echo $flight['fdst']?> >
                                         </div>
-                                        </div>
+                                        <!--<div class="wrapper under"><span class="left">Orario:</span>
+                                            <div class="col1">
+                                                <h6>Partenza: <?php /*echo $flight['fday']*/?> alle <?php /*echo $flight["ftsrc"] */?></h6>
+                                            </div>
+                                        </div>-->
+                                        <span class="right relative">
+                                            <?php if($current_user->isLoggedIn()) : ?>
+                                                <input class="button_blue" type="submit" name="details" value="Seleziona" />
+                                            <?php else :?>
+                                                <input class="button_blue" type="submit" name="login_page" value="Login" />
+                                            <?php endif; ?>
+                                        </span>
+                                    </div>
 
                                     </div>
                                 </div>
@@ -117,10 +123,5 @@
     <!--footer end-->
 </div>
 <script type="text/javascript">Cufon.now();</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        tabs2.init();
-    });
-</script>
 </body>
 </html>
