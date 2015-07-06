@@ -32,11 +32,11 @@ class Flight {
     }
 
     /**
-     * Get all flights
+     * Get all flights without repeated airlines
      * @return array
      */
     public function index(){
-        $get_all_flights_query = "SELECT * FROM fly";
+        $get_all_flights_query = "SELECT DISTINCT fsrc, fdst FROM fly";
         $res = mysqli_query($this->db,$get_all_flights_query);
         $no_rows = mysqli_num_rows($res);
 
@@ -76,6 +76,22 @@ class Flight {
             array_push($flights, $flight);
         }
         return $flights[0];
+    }
+
+    /**
+     * Search flights with specific airline
+     * @param $fsrc
+     * @param $fdst
+     * @return array
+     */
+    public function find_flight($fsrc, $fdst){
+        $find_flight_query = "SELECT * FROM fly WHERE fsrc = '" . $fsrc . "' AND fdst = '". $fdst ."'";
+        $res = mysqli_query($this->db,$find_flight_query);
+        $flights = array();
+        while ($flight = $res->fetch_assoc()) {
+            array_push($flights, $flight);
+        }
+        return $flights;
     }
 
     /**
