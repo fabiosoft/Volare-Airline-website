@@ -159,17 +159,17 @@ header {
 }
 #top_nav li a {
 	display:inline-block;
-	padding-top:13px;
+	/*padding-top:13px;*/
 	color:#fff
 }
 .nav1 {
-	background:url(../images/img_top1.gif) center 0 no-repeat
+	/*background:url(../images/img_top1.gif) center 0 no-repeat*/
 }
 .nav2 {
-	background:url(../images/img_top2.gif) center 0 no-repeat
+	/*background:url(../images/img_top2.gif) center 0 no-repeat*/
 }
 .nav3 {
-	background:url(../images/img_top3.gif) center 0 no-repeat
+	/*background:url(../images/img_top3.gif) center 0 no-repeat*/
 }
 #menu {
 	padding:27px 0 0 42px
