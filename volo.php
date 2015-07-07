@@ -87,7 +87,7 @@ if(isset($_POST['fsrc']) and isset($_POST['fdst']) ){
                                                 <?php echo $flight['fsrc'] ?>
                                             </div>
                                             <div class="row"> <span class="left">Arrivo</span>
-                                                <input type="checkbox" name="selected[<?php echo $flight['fid']?>]" value="<?php echo $flight['fid']?>">
+                                                <input type="checkbox" name="selected[<?php echo $flight['fid']?>][selected][<?php echo $flight['fid']?>" value="<?php echo $flight['fid']?>">
                                                 <?php echo $flight['fdst'] ?> da &euro; <?php echo $flight['fprice'] ?>
                                             </div>
                                         </div>

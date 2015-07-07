@@ -14,14 +14,17 @@ echo "</pre>";
 if($current_user->isLoggedIn()) {
 
     if (isset($_POST['selected'])) {
-        $all_selected_flights = $_POST['selected'];
-        foreach ($all_selected_flights as $selected_flight_id => $selected_flight) {
-            $seats = intval($selected_flight['adults']) + intval($selected_flight['children']);
-            $price = intval($selected_flight['fprice']);
-            $_POST['fseat'] = $seats; //assign sum for validation key
-            $val_errors = Flight::validate($_POST);
-            if (count($val_errors) == 0) {
-                $current_user->add_flight($selected_flight_id, $seats, $price);
+        $all_selected_flights = $_POST['selected']; //get into the array
+        foreach ($all_selected_flights as $selected_flight_id => $selected_flight) { //for each flight
+            if(isset($selected_flight['selected'])) { //get only the checked one
+                $seats = intval($selected_flight['adults']) + intval($selected_flight['children']);
+                $price = intval($selected_flight['fprice']);
+                $selected_flight['fseat'] = $seats; //assign sum for validation key
+                $val_errors = Flight::validate($selected_flight);
+                if (count($val_errors) == 0) {
+                    //add flight to cart
+                    $current_user->add_flight($selected_flight_id, $seats, $price);
+                }
             }
         }
     }
