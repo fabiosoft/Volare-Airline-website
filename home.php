@@ -138,6 +138,6 @@
     </footer>
     <!--footer end-->
 </div>
-<script type="text/javascript">Cufon.now();</script>
+
 </body>
 </html>
