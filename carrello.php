@@ -7,10 +7,6 @@ $current_user = new User();
 $flight_manager = new Flight();
 $cart = new Cart();
 
-echo "<pre>";
-echo print_r($_POST);
-echo "</pre>";
-
 if($current_user->isLoggedIn()) {
 
     if (isset($_POST['selected'])) {
@@ -156,6 +152,6 @@ if($current_user->isLoggedIn()) {
 </footer>
 <!--footer end-->
 </div>
-<script type="text/javascript">Cufon.now();</script>
+
 </body>
 </html>

@@ -139,7 +139,7 @@ if(isset($_POST['fsrc']) and isset($_POST['fdst']) ){
     </footer>
     <!--footer end-->
 </div>
-<script type="text/javascript">Cufon.now();</script>
+
 <script type="text/javascript">
 </script>
 </body>
