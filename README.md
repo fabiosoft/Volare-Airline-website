@@ -6,11 +6,22 @@ Develop in PHP technology a website to buy airline flights.
 
 ## Installation
 
-TODO: Describe the installation process
+To locally run this application first, you need a server.
+ 
+* Vagrant - [scotch](https://box.scotch.io/#get-started)
+* [MAMP](https://www.mamp.info/en/downloads/)
+* [XAMPP](https://www.apachefriends.org/it/download.html)
+
+Move the main folder inside the public directory (or htdocs) and don't forget the .htaccess, this is for open automatically the home.php page.
 
 ## Usage
 
-TODO: Write usage instructions
+Go to your localhost or server IP and enjoy.  
+Some examples are:
+
+* for [scotch](192.168.33.10/volare)
+* for [MAMP](localhost:8888/volare)
+* for [XAMPP](localhost/volare)
 
 ## Contributing
 
