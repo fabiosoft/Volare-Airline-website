@@ -7,15 +7,22 @@ $current_user = new User();
 $flight_manager = new Flight();
 $cart = new Cart();
 
+echo "<pre>";
+echo print_r($_POST);
+echo "</pre>";
+
 if($current_user->isLoggedIn()) {
 
-    if (isset($_POST['fid'])) {
-        $seats = intval($_POST['adults']) + intval($_POST['children']);
-        $price = intval($_POST['fprice']);
-        $_POST['fseat'] = $seats; //assign sum for validation key
-        $val_errors = Flight::validate($_POST);
-        if(count($val_errors) == 0) {
-            $current_user->add_flight($_POST['fid'], $seats, $price);
+    if (isset($_POST['selected'])) {
+        $all_selected_flights = $_POST['selected'];
+        foreach ($all_selected_flights as $selected_flight_id => $selected_flight) {
+            $seats = intval($selected_flight['adults']) + intval($selected_flight['children']);
+            $price = intval($selected_flight['fprice']);
+            $_POST['fseat'] = $seats; //assign sum for validation key
+            $val_errors = Flight::validate($_POST);
+            if (count($val_errors) == 0) {
+                $current_user->add_flight($selected_flight_id, $seats, $price);
+            }
         }
     }
 

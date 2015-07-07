@@ -87,16 +87,16 @@ if(isset($_POST['fsrc']) and isset($_POST['fdst']) ){
                                                 <?php echo $flight['fsrc'] ?>
                                             </div>
                                             <div class="row"> <span class="left">Arrivo</span>
-                                                <input type="checkbox" name="selected">
+                                                <input type="checkbox" name="selected[<?php echo $flight['fid']?>]" value="<?php echo $flight['fid']?>">
                                                 <?php echo $flight['fdst'] ?> da &euro; <?php echo $flight['fprice'] ?>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="wrapper pad_bot2"> <span class="left">Viaggiatori</span>
                                         <div class="col2">
-                                            <input name="adults" type="text" class="input2" value="1"  onblur="if(this.value=='') this.value='1'" onFocus="if(this.value =='1' ) this.value=''">
+                                            <input name="selected[<?php echo $flight['fid']?>][adults]" type="text" class="input2" value="1"  onblur="if(this.value=='') this.value='1'" onFocus="if(this.value =='1' ) this.value=''">
                                             <span class="left">Adults</span>
-                                            <input name="children" type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
+                                            <input name="selected[<?php echo $flight['fid']?>][children]" type="text" class="input2" value="0"  onblur="if(this.value=='') this.value='0'" onFocus="if(this.value =='0' ) this.value=''">
                                             <span class="left">Children</span> </div>
                                     </div>
                                 </div>
@@ -116,18 +116,18 @@ if(isset($_POST['fsrc']) and isset($_POST['fdst']) ){
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="hidden" name="fprice" value=<?php echo $flight['fprice']?> >
-                                    <input type="hidden" name="fid" value=<?php echo $flight['fid']?> >
-                                    <?php if($current_user->isLoggedIn()) : ?>
-                                        <input class="button_red" type="reset" name="reset" value="Cancella" />
-                                        <input class="button_blue" type="submit" name="buy" value="Acquista" />
-                                    <?php else :?>
-                                        <input class="button_blue" type="submit" name="login" value="Login" />
-                                    <?php endif; ?>
+                                    <input type="hidden" name="selected[<?php echo $flight['fid']?>][fprice]" value=<?php echo $flight['fprice']?> >
+                                    <input type="hidden" name="selected[<?php echo $flight['fid']?>][fid]" value=<?php echo $flight['fid']?> >
                                 </div>
                             </div>
-                        </form>
-                    <?php endforeach; ?>
+                                <?php endforeach; ?>
+                                <?php if($current_user->isLoggedIn()) : ?>
+                                    <input class="button_red" type="reset" name="reset" value="Cancella" />
+                                    <input class="button_blue" type="submit" name="buy" value="Acquista" />
+                                <?php else :?>
+                                    <input class="button_blue" type="submit" name="login" value="Login" />
+                                <?php endif; ?>
+                            </form>
                 </div>
             </article>
         </div>
