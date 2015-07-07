@@ -89,7 +89,7 @@
                     </ul>
                     <div class="content">
                         <div class="tab-content" id="login">
-                            <form id="form_1" name="login" method="post" action="">
+                            <form id="form_1" name="login" method="post" action="home.php">
                                 <div>
                                     <div class="radio">
                                         <div class="wrapper">
